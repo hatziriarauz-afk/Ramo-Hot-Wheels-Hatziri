@@ -3,66 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz 30 de Septiembre🚗💙</title>
+    <title>Feliz 30 de Septiembre 💙 </title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background: radial-gradient(circle at center, #0a1931 0%, #030814 100%);
+            background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
             min-height: 100vh;
-            overflow-x: hidden;
+            color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #fff;
+            overflow-x: hidden;
         }
 
         /* --- PANTALLA DE CARGA (LOADER) --- */
         #loader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #030814;
-            z-index: 999;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: #020c1b;
+            z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
         .loader-title {
-            font-size: 1.5rem;
-            color: #ff2a2a;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 42, 42, 0.6);
-            margin-bottom: 25px;
+            font-size: 1.4rem;
+            color: #ff3366;
+            font-weight: 800;
             letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 12px rgba(255, 51, 102, 0.6);
         }
 
         .track-container {
             width: 80%;
-            max-width: 350px;
+            max-width: 320px;
             position: relative;
-            height: 40px;
+            height: 30px;
             display: flex;
             align-items: center;
         }
 
         .track-line {
             width: 100%;
-            height: 6px;
+            height: 8px;
             background: #1e293b;
-            border-radius: 3px;
-            position: absolute;
+            border-radius: 10px;
             overflow: hidden;
             border: 1px solid #334155;
         }
@@ -70,8 +67,8 @@
         .track-progress {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #ff0055, #ffcc00);
-            box-shadow: 0 0 12px #ff5500;
+            background: linear-gradient(90deg, #ff0055, #ffcc00, #00e5ff);
+            box-shadow: 0 0 12px #00e5ff;
             transition: width 0.05s linear;
         }
 
@@ -79,19 +76,19 @@
             position: absolute;
             top: -12px;
             left: 0%;
-            width: 45px;
-            height: 25px;
+            width: 40px;
+            height: 24px;
             transform: translateX(-50%);
             transition: left 0.05s linear;
-            filter: drop-shadow(0 0 6px #00e5ff);
+            filter: drop-shadow(0 0 8px #00e5ff);
         }
 
         .percentage {
             margin-top: 20px;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #00e5ff;
-            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
         }
 
         /* --- CONTENIDO PRINCIPAL --- */
@@ -103,17 +100,21 @@
             justify-content: space-between;
             min-height: 100vh;
             width: 100%;
-            padding: 20px 10px;
+            padding: 20px 10px 40px;
             transition: opacity 1s ease;
         }
 
-        .header-title {
+        .header-section {
             text-align: center;
+            margin-top: 10px;
+            z-index: 10;
+        }
+
+        .header-title {
             font-size: 2.2rem;
             color: #38bdf8;
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 30px rgba(0, 119, 255, 0.4);
-            margin-top: 15px;
             font-weight: 800;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 30px rgba(0, 119, 255, 0.5);
             animation: glow 2s infinite alternate;
         }
 
@@ -123,191 +124,289 @@
         }
 
         .instruction {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-top: 5px;
-            text-align: center;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-top: 6px;
         }
 
-        /* --- CONTENEDOR DEL RAMO (ANIMACIÓN DE ENTRADA DESDE ABAJO) --- */
-        .bouquet-container {
+        /* --- CONTENEDOR DEL RAMO --- */
+        .bouquet-wrapper {
             position: relative;
-            width: 340px;
+            width: 350px;
             height: 520px;
-            margin-top: auto;
-            transform: translateY(100vh); /* Inicia fuera de pantalla abajo */
-            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+            margin-top: 20px;
+            transform: translateY(100vh);
+            transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
             display: flex;
             justify-content: center;
             align-items: flex-end;
         }
 
-        .bouquet-container.visible {
-            transform: translateY(0); /* Sube hasta su posición */
+        .bouquet-wrapper.visible {
+            transform: translateY(0);
         }
 
-        /* PAPEL DEL RAMO (ENVOLTURA AZUL) */
-        .wrapper-paper-back {
+        /* FLORES AZULES DECORATIVAS */
+        .flowers-layer {
             position: absolute;
-            bottom: 0;
-            width: 320px;
-            height: 380px;
-            background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
-            clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            z-index: 1;
-        }
-
-        .wrapper-paper-front {
-            position: absolute;
-            bottom: 0;
-            width: 280px;
-            height: 250px;
-            background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
-            clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
-            z-index: 3;
-            box-shadow: inset 0 5px 15px rgba(255,255,255,0.2);
-        }
-
-        .ribbon {
-            position: absolute;
-            bottom: 30px;
-            width: 140px;
-            height: 35px;
-            background: linear-gradient(90deg, #38bdf8, #0284c7, #38bdf8);
-            border-radius: 20px;
-            z-index: 5;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #fff;
-        }
-
-        /* FLORES AZULES */
-        .flower {
-            position: absolute;
-            z-index: 2;
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, #38bdf8 0%, #1d4ed8 100%);
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-        }
-        .f1 { bottom: 200px; left: 40px; transform: scale(0.8) rotate(-25deg); }
-        .f2 { bottom: 210px; right: 40px; transform: scale(0.8) rotate(25deg); }
-        .f3 { bottom: 180px; left: 110px; transform: scale(1) rotate(0deg); }
-
-        /* TARJETAS DE HOT WHEELS */
-        .cards-group {
-            position: absolute;
-            bottom: 120px;
+            bottom: 210px;
             width: 100%;
-            height: 380px;
+            height: 100px;
             z-index: 2;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .blue-rose {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #38bdf8, #1d4ed8, #0f172a);
+            border-radius: 50% 50% 50% 10%;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+            position: relative;
+            transform: rotate(-45deg);
+        }
+
+        .blue-rose::after {
+            content: '';
+            position: absolute;
+            top: 20%; left: 20%;
+            width: 60%; height: 60%;
+            background: radial-gradient(circle, #7dd3fc, #0284c7);
+            border-radius: 50%;
+        }
+
+        .rose-1 { transform: rotate(-30deg) scale(0.9); }
+        .rose-2 { transform: rotate(-45deg) scale(1.1) translateY(-10px); }
+        .rose-3 { transform: rotate(-60deg) scale(0.9); }
+
+        /* ABANICO DE TARJETAS HOT WHEELS */
+        .cards-fan {
+            position: absolute;
+            bottom: 140px;
+            width: 100%;
+            height: 360px;
+            z-index: 3;
             display: flex;
             justify-content: center;
         }
 
         .hw-card {
             position: absolute;
-            width: 105px;
-            height: 155px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+            width: 115px;
+            height: 175px;
+            background: #002244;
+            border-radius: 10px;
+            border: 2px solid #38bdf8;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 10px rgba(56, 189, 248, 0.3);
             cursor: pointer;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27), box-shadow 0.3s ease;
         }
 
         .hw-card:hover {
-            transform: scale(1.15) translateY(-15px) !important;
-            z-index: 10 !important;
-            filter: brightness(1.2);
-            border-color: #38bdf8;
+            transform: scale(1.25) translateY(-25px) !important;
+            z-index: 50 !important;
+            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.6), 0 0 20px #00e5ff;
+            border-color: #00e5ff;
         }
 
-        /* Posiciones en abanico para las 6 tarjetas */
-        .c1 { transform: rotate(-28deg) translate(-100px, 20px); z-index: 1; }
-        .c2 { transform: rotate(-16deg) translate(-55px, -15px); z-index: 2; }
-        .c3 { transform: rotate(-5deg) translate(-15px, -40px); z-index: 3; }
-        .c4 { transform: rotate(5deg) translate(15px, -40px); z-index: 3; }
-        .c5 { transform: rotate(16deg) translate(55px, -15px); z-index: 2; }
-        .c6 { transform: rotate(28deg) translate(100px, 20px); z-index: 1; }
-
-        /* MODAL DE DEDICATORIA */
-        .modal {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(3, 8, 20, 0.85);
-            backdrop-filter: blur(5px);
+        /* ENCABEZADO ESTILO HOT WHEELS */
+        .card-header {
+            background: linear-gradient(90deg, #d97706, #dc2626, #d97706);
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 100;
+            padding: 0 4px;
+            border-bottom: 2px solid #ffcc00;
+        }
+
+        .card-header span {
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: #fff;
+            font-style: italic;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        /* IMAGEN DE LA TARJETA */
+        .card-img-container {
+            width: 100%;
+            height: 110px;
+            background: #0f172a;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .hw-card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        /* PIE DE LA TARJETA (NOMBRE DEL AUTO) */
+        .card-footer {
+            background: #0369a1;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2px 4px;
+            border-top: 1px solid #38bdf8;
+        }
+
+        .card-footer span {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* POSICIONES EN ABANICO DE LAS 6 TARJETAS */
+        .c1 { transform: rotate(-30deg) translate(-110px, 25px); z-index: 10; }
+        .c2 { transform: rotate(-18deg) translate(-65px, -10px); z-index: 11; }
+        .c3 { transform: rotate(-6deg) translate(-20px, -35px); z-index: 12; }
+        .c4 { transform: rotate(6deg) translate(20px, -35px); z-index: 12; }
+        .c5 { transform: rotate(18deg) translate(65px, -10px); z-index: 11; }
+        .c6 { transform: rotate(30deg) translate(110px, 25px); z-index: 10; }
+
+        /* PAPEL DEL RAMO (ENVOLTURA AZUL) */
+        .wrapper-back {
+            position: absolute;
+            bottom: 0;
+            width: 320px;
+            height: 340px;
+            background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%);
+            clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+            border-radius: 12px;
+            z-index: 1;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+
+        .wrapper-front {
+            position: absolute;
+            bottom: 0;
+            width: 290px;
+            height: 220px;
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 25% 100%);
+            z-index: 4;
+            box-shadow: inset 0 6px 15px rgba(255,255,255,0.3);
+        }
+
+        .ribbon-badge {
+            position: absolute;
+            bottom: 25px;
+            width: 170px;
+            height: 42px;
+            background: linear-gradient(90deg, #0284c7, #38bdf8, #0284c7);
+            border: 2px solid #e0f2fe;
+            border-radius: 25px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.6);
+            letter-spacing: 1px;
+        }
+
+        /* MODAL FLOTANTE (DEDICATORIA) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(2, 12, 27, 0.85);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
 
-        .modal.active {
+        .modal-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
 
-        .modal-card {
-            background: #0f172a;
+        .modal-box {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
             border: 2px solid #38bdf8;
-            border-radius: 16px;
-            padding: 25px;
-            width: 85%;
-            max-width: 320px;
+            border-radius: 20px;
+            padding: 30px 25px;
+            width: 88%;
+            max-width: 340px;
             text-align: center;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+            transform: scale(0.7);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
         }
 
-        .modal.active .modal-card {
+        .modal-overlay.active .modal-box {
             transform: scale(1);
         }
 
+        .modal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
         .modal-text {
-            font-size: 1.1rem;
-            color: #f1f5f9;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            font-size: 1.15rem;
+            color: #f8fafc;
+            line-height: 1.6;
+            margin-bottom: 22px;
+            font-weight: 500;
         }
 
         .close-btn {
             background: linear-gradient(90deg, #ff0055, #ff5500);
-            color: white;
+            color: #fff;
             border: none;
-            padding: 10px 24px;
-            border-radius: 20px;
-            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 800;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(255, 0, 85, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        .close-btn:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
 
-    <!-- PANTALLA DE CARGA CON CARRITO Y PORCENTAJE -->
+    <!-- PANTALLA DE CARGA -->
     <div id="loader">
-        <div class="loader-title">PREPARANDO REGALO...</div>
+        <div class="loader-title">PREPARANDO DEDICATORIA...</div>
         <div class="track-container">
             <div class="track-line">
                 <div class="track-progress" id="progress"></div>
             </div>
-            <!-- Carrito SVG de carreras -->
             <svg class="car-icon" id="car" viewBox="0 0 24 24" fill="#00e5ff">
                 <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"/>
                 <circle cx="7.5" cy="14.5" r="1.5"/>
@@ -319,63 +418,107 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <div class="main-content" id="mainContent">
-        <div>
+        <div class="header-section">
             <h1 class="header-title">Feliz 30 de septiembre 💙</h1>
             <p class="instruction">Toca un carrito para descubrir 🚘✨</p>
         </div>
 
-        <!-- RAMO ANIMADO -->
-        <div class="bouquet-container" id="bouquet">
-            <!-- Capa trasera envoltura -->
-            <div class="wrapper-paper-back"></div>
+        <!-- CONTENEDOR DEL RAMO -->
+        <div class="bouquet-wrapper" id="bouquet">
+            <!-- Envoltura trasera -->
+            <div class="wrapper-back"></div>
 
-            <!-- Flores de adorno -->
-            <div class="flower f1"></div>
-            <div class="flower f2"></div>
-            <div class="flower f3"></div>
-
-            <!-- Tarjetas de Hot Wheels -->
-            <div class="cards-group">
-                <!-- Ferrari SF90 -->
-                <div class="hw-card c1" onclick="openPhrase(0)" style="background-image: url('https://m.media-amazon.com/images/I/71R24-pL9YL._AC_SL1200_.jpg');"></div>
-                <!-- McLaren P1 -->
-                <div class="hw-card c2" onclick="openPhrase(1)" style="background-image: url('https://m.media-amazon.com/images/I/71s86mK-J-L._AC_SL1001_.jpg');"></div>
-                <!-- Lamborghini Huracán -->
-                <div class="hw-card c3" onclick="openPhrase(2)" style="background-image: url('https://m.media-amazon.com/images/I/71WyluR-9XL._AC_SL1200_.jpg');"></div>
-                <!-- Dodge Charger R/T -->
-                <div class="hw-card c4" onclick="openPhrase(3)" style="background-image: url('https://m.media-amazon.com/images/I/71e-TqZ5V5L._AC_SL1200_.jpg');"></div>
-                <!-- Mercedes AMG F1 -->
-                <div class="hw-card c5" onclick="openPhrase(4)" style="background-image: url('https://m.media-amazon.com/images/I/71zZk8mB5tL._AC_SL1200_.jpg');"></div>
-                <!-- Ford F-150 -->
-                <div class="hw-card c6" onclick="openPhrase(5)" style="background-image: url('https://m.media-amazon.com/images/I/71I3uA32KkL._AC_SL1200_.jpg');"></div>
+            <!-- Flores azules decorativas -->
+            <div class="flowers-layer">
+                <div class="blue-rose rose-1"></div>
+                <div class="blue-rose rose-2"></div>
+                <div class="blue-rose rose-3"></div>
             </div>
 
-            <!-- Capa delantera envoltura y Lazo -->
-            <div class="wrapper-paper-front"></div>
-            <div class="ribbon">PARA SERGIO 💙</div>
+            <!-- Abanico de Tarjetas Hot Wheels -->
+            <div class="cards-fan">
+                <!-- 1. Ferrari -->
+                <div class="hw-card c1" onclick="openPhrase(0)">
+                    <div class="card-header"><span>HOT WHEELS</span></div>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&auto=format&fit=crop&q=80" alt="Ferrari" class="card-img">
+                    </div>
+                    <div class="card-footer"><span>FERRARI SF90</span></div>
+                </div>
+
+                <!-- 2. McLaren -->
+                <div class="hw-card c2" onclick="openPhrase(1)">
+                    <div class="card-header"><span>HOT WHEELS</span></div>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=400&auto=format&fit=crop&q=80" alt="McLaren" class="card-img">
+                    </div>
+                    <div class="card-footer"><span>MCLAREN P1</span></div>
+                </div>
+
+                <!-- 3. Lamborghini -->
+                <div class="hw-card c3" onclick="openPhrase(2)">
+                    <div class="card-header"><span>HOT WHEELS</span></div>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=400&auto=format&fit=crop&q=80" alt="Lamborghini" class="card-img">
+                    </div>
+                    <div class="card-footer"><span>LAMBORGHINI</span></div>
+                </div>
+
+                <!-- 4. Dodge Charger -->
+                <div class="hw-card c4" onclick="openPhrase(3)">
+                    <div class="card-header"><span>HOT WHEELS</span></div>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=400&auto=format&fit=crop&q=80" alt="Dodge Charger" class="card-img">
+                    </div>
+                    <div class="card-footer"><span>DODGE CHARGER</span></div>
+                </div>
+
+                <!-- 5. Mercedes F1 -->
+                <div class="hw-card c5" onclick="openPhrase(4)">
+                    <div class="card-header"><span>HOT WHEELS</span></div>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&auto=format&fit=crop&q=80" alt="Mercedes F1" class="card-img">
+                    </div>
+                    <div class="card-footer"><span>MERCEDES F1</span></div>
+                </div>
+
+                <!-- 6. Ford F-150 -->
+                <div class="hw-card c6" onclick="openPhrase(5)">
+                    <div class="card-header"><span>HOT WHEELS</span></div>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&auto=format&fit=crop&q=80" alt="Ford F-150" class="card-img">
+                    </div>
+                    <div class="card-footer"><span>FORD F-150</span></div>
+                </div>
+            </div>
+
+            <!-- Envoltura delantera y lazo -->
+            <div class="wrapper-front"></div>
+            <div class="ribbon-badge">PARA SERGIO 💙</div>
         </div>
     </div>
 
-    <!-- MODAL / CUADRO FLOTANTE CON FRASES -->
-    <div class="modal" id="modal">
-        <div class="modal-card">
+    <!-- MODAL DE FRASES -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <div class="modal-icon">🏎️💨</div>
             <p class="modal-text" id="modalText"></p>
             <button class="close-btn" onclick="closePhrase()">Cerrar 🏁</button>
         </div>
     </div>
 
     <script>
-        // --- 1. AQUÍ PUEDES PERSONALIZAR TUS FRASES PARA SERGIO ---
+        // Mensajes personalizados para Sergio
         const phrases = [
-            "Te quiro mucho sergio de mi corazón. 🏎️💙",
+            "Te quiero mucho sergio de mi corazón. 🏎️💙",
             "Feliz 30 de septiembre. ✨",
-            "Sos una persona especial para mi. 🏁❤️",
-            "Hice esto especialmente para vos. 🚗💨",
+            "Gracias por soportar a esta persona. 🏁❤️",
+            "Sos una persona especial para mi 🚗💨",
             "Gracias por ser mi alguien importante en mi vida. ¡Te quiero mucho sapo💙",
-            "Gracias por soportarme te aprecio. 🎁🔥"
+            "Un detalle especial para vos. 🎁🔥"
         ];
 
-        // --- 2. ANIMACIÓN DEL LOADER Y CARGA ---
+        // Animación de Carga
         let count = 0;
         const progress = document.getElementById('progress');
         const car = document.getElementById('car');
@@ -395,20 +538,18 @@
             if (count === 100) {
                 clearInterval(interval);
                 setTimeout(() => {
-                    // Ocultar Loader
                     loader.style.opacity = '0';
                     loader.style.visibility = 'hidden';
                     mainContent.style.opacity = '1';
                     
-                    // Iniciar animación del ramo subiendo desde abajo
                     setTimeout(() => {
                         bouquet.classList.add('visible');
                     }, 200);
-                }, 500);
+                }, 400);
             }
-        }, 40);
+        }, 35);
 
-        // --- 3. FUNCIONES PARA EL MODAL DE FRASES ---
+        // Funciones del Modal
         function openPhrase(index) {
             document.getElementById('modalText').innerText = phrases[index];
             document.getElementById('modal').classList.add('active');
