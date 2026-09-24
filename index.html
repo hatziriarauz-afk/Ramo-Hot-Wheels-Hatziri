@@ -3,349 +3,375 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Sergio</title>
+  <title>Feliz 30 de septiembre</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow: hidden;
-      background: #051c3d;
-      font-family: Arial, sans-serif;
+    :root{
+      --bg1:#020d1d;
+      --bg2:#0a2248;
+      --text:#d9c3ff;
+      --blue:#1e3a8a;
+      --blue2:#0f172a;
+      --cardBlue:#2f7ef5;
+      --gold:#f9d84c;
+      --card:#f5f5f5;
+      --shadow: rgba(0,0,0,.35);
     }
 
-    #start-screen {
-      position: fixed;
-      inset: 0;
-      background: #051c3d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
+    *{ box-sizing:border-box; }
+
+    html,body{
+      margin:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg1);
+      color:white;
     }
 
-    #start-button {
-      padding: 18px 30px;
-      font-size: 1.4rem;
-      border: none;
-      border-radius: 14px;
-      background: #fff7d6;
-      color: #071f4d;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(255,255,255,.25);
-    }
-
-    #page {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      display: none;
+    body{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       background:
-        linear-gradient(rgba(4, 22, 55, 0.6), rgba(4, 22, 55, 0.8)),
-        url("https://i.pinimg.com/736x/a0/73/56/a07356dbd5911c2fc768256c9349a411.jpg")
-        center/cover no-repeat;
+        radial-gradient(circle at center, rgba(30,58,138,.4), transparent 35%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
     }
 
-    h1 {
-      position: absolute;
-      top: 35px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #c6a3ff;
-      text-shadow: 0 0 16px rgba(198,163,255,.8);
-      font-size: clamp(2rem, 7vw, 4rem);
-      margin: 0;
+    .bg-pattern{
+      position:absolute;
+      inset:0;
+      opacity:.75;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02), rgba(255,255,255,.02)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='800' viewBox='0 0 1400 800'%3E%3Cg fill='none' stroke='%235da7ff' stroke-opacity='0.18' font-family='Arial' font-size='28' font-weight='700'%3E%3Ctext x='30' y='120' transform='rotate(-15 30 120)'%3EHot Wheels%3C/text%3E%3Ctext x='260' y='310' transform='rotate(-15 260 310)'%3EHot Wheels%3C/text%3E%3Ctext x='550' y='200' transform='rotate(-15 550 200)'%3EHot Wheels%3C/text%3E%3Ctext x='760' y='420' transform='rotate(-15 760 420)'%3EHot Wheels%3C/text%3E%3Ctext x='980' y='260' transform='rotate(-15 980 260)'%3EHot Wheels%3C/text%3E%3Ctext x='1100' y='560' transform='rotate(-15 1100 560)'%3EHot Wheels%3C/text%3E%3Ctext x='160' y='620' transform='rotate(-15 160 620)'%3EHot Wheels%3C/text%3E%3Ctext x='600' y='650' transform='rotate(-15 600 650)'%3EHot Wheels%3C/text%3E%3Ctext x='900' y='710' transform='rotate(-15 900 710)'%3EHot Wheels%3C/text%3E%3C/g%3E%3C/svg%3E");
+      background-size:cover;
+      background-position:center;
+      pointer-events:none;
     }
 
-    .bouquet {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 900px;
-      height: 75vh;
+    .start-screen{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(2,15,29,.92);
+      z-index:999;
+      transition:opacity .4s ease, visibility .4s ease;
     }
 
-    .flower {
-      position: absolute;
-      bottom: 70px;
-      width: 120px;
-      height: 200px;
-      cursor: pointer;
-      animation: sway 4s ease-in-out infinite;
+    .start-screen.hidden{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
     }
 
-    .flower-1 { left: 8%; transform: rotate(-22deg); }
-    .flower-2 { left: 24%; transform: rotate(-8deg); animation-delay: .5s; }
-    .flower-3 { left: 41%; transform: rotate(0deg); animation-delay: 1s; }
-    .flower-4 { right: 24%; transform: rotate(8deg); animation-delay: 1.5s; }
-    .flower-5 { right: 8%; transform: rotate(22deg); animation-delay: 2s; }
-
-    .petals {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 90px;
+    .start-btn{
+      border:none;
+      border-radius:18px;
+      background:linear-gradient(180deg,#fff5d0,#f5e4b4);
+      color:#0d1b2a;
+      font-size:1.5rem;
+      font-weight:700;
+      padding:18px 34px;
+      cursor:pointer;
+      box-shadow:0 12px 28px rgba(255,255,255,.2);
     }
 
-    .petals span {
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
-      width: 42px;
-      height: 68px;
-      background: radial-gradient(circle at 50% 20%, #fff6a8, #ffd21f, #ff9d00);
-      border: 2px solid #ffbe00;
-      border-radius: 55% 55% 45% 45%;
-      transform-origin: bottom center;
-      box-shadow: 0 0 10px rgba(255,210,31,.8);
+    .app{
+      position:relative;
+      z-index:2;
+      width:100%;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      opacity:0;
+      transform:translateY(18px);
+      transition:all .8s ease;
     }
 
-    .petals span:nth-child(1) { transform: translateX(-50%) rotate(-45deg); }
-    .petals span:nth-child(2) { transform: translateX(-50%) rotate(-15deg); }
-    .petals span:nth-child(3) { transform: translateX(-50%) rotate(15deg); }
-    .petals span:nth-child(4) { transform: translateX(-50%) rotate(45deg); }
-
-    .center {
-      position: absolute;
-      top: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: repeating-conic-gradient(#2f1b14 0deg 18deg, #8b4513 18deg 36deg);
-      box-shadow: inset 0 0 8px rgba(0,0,0,.6);
-      z-index: 2;
+    .app.show{
+      opacity:1;
+      transform:translateY(0);
     }
 
-    .stem {
-      position: absolute;
-      top: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 10px;
-      height: 190px;
-      background: linear-gradient(to right, #2c4f1e, #6aa62d, #2c4f1e);
-      border-radius: 10px;
+    .titulo{
+      margin:0;
+      color:var(--text);
+      font-weight:900;
+      font-size:clamp(2.2rem, 5vw, 6rem);
+      letter-spacing:1px;
+      text-shadow: 0 0 18px rgba(201,156,255,.9);
+      text-align:center;
+      line-height:1.1;
     }
 
-    .grass {
-      position: absolute;
-      bottom: 0;
-      width: 18px;
-      height: 180px;
-      background: linear-gradient(to top, #173c12, #5f9623);
-      border-radius: 10px;
-      transform-origin: bottom center;
+    .titulo .heart{
+      display:inline-block;
+      transform:translateY(4px);
+      font-size:0.8em;
+      color:#ff7bdc;
+      text-shadow:0 0 18px rgba(255,123,220,.9);
     }
 
-    .grass-1 { left: 18%; transform: rotate(-25deg); }
-    .grass-2 { left: 50%; height: 220px; transform: rotate(5deg); }
-    .grass-3 { right: 18%; transform: rotate(25deg); }
-
-    .particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
+    .cars-wrap{
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      gap:clamp(12px, 2vw, 24px);
+      margin-top:40px;
+      padding:20px;
+      transform:translateY(12px);
     }
 
-    .particle {
-      position: absolute;
-      bottom: -20px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: white;
-      opacity: .8;
-      animation: particle-up 3.2s linear forwards;
+    .car-card{
+      position:relative;
+      width:clamp(100px, 14vw, 180px);
+      height:clamp(120px, 24vw, 220px);
+      background:linear-gradient(180deg, #fff, #dfeafc);
+      border-radius:18px 18px 12px 12px;
+      box-shadow:0 16px 32px var(--shadow);
+      border:4px solid #dfeafc;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform .25s ease, box-shadow .25s ease;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
     }
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,.75);
-      z-index: 200;
+    .car-card:hover{
+      transform:translateY(-16px) scale(1.04);
+      box-shadow:0 20px 35px rgba(0,0,0,.45);
     }
 
-    .modal.active { display: flex; }
-
-    .modal-box {
-      position: relative;
-      width: min(90vw, 420px);
-      padding: 30px 22px;
-      background: #061d3d;
-      border: 2px solid #c6a3ff;
-      border-radius: 18px;
-      box-shadow: 0 0 30px rgba(198,163,255,.5);
-      text-align: center;
+    .car-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(1.05) contrast(1.05);
     }
 
-    .close-btn {
-      position: absolute;
-      right: 12px;
-      top: 8px;
-      border: none;
-      background: transparent;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
+    .car-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:20px;
+      background:linear-gradient(90deg,#1d4ed8,#38bdf8,#1d4ed8);
+      border-bottom:3px solid rgba(255,255,255,.7);
     }
 
-    .modal-flower {
-      font-size: 3rem;
-      margin-bottom: 10px;
+    .car-card::after{
+      content:"HOT WHEELS";
+      position:absolute;
+      top:18px;
+      left:50%;
+      transform:translateX(-50%);
+      font-size:clamp(7px, 1vw, 13px);
+      font-weight:900;
+      letter-spacing:1px;
+      color:#fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,.5);
     }
 
-    #message {
-      color: white;
-      font-size: 1.2rem;
-      line-height: 1.6;
+    .car-card .label{
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      padding:6px 4px;
+      background:rgba(16,32,60,.8);
+      color:#fff;
+      font-size:clamp(8px, 1vw, 12px);
+      font-weight:700;
+      text-align:center;
+      letter-spacing:1px;
+      text-transform:uppercase;
     }
 
-    @keyframes sway {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(2,12,24,.78);
+      z-index:1000;
     }
 
-    @keyframes particle-up {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: .8;
+    .modal.show{
+      display:flex;
+    }
+
+    .modal-box{
+      position:relative;
+      width:min(92vw, 540px);
+      background:#0a1732;
+      border:3px solid rgba(201,156,255,.9);
+      border-radius:22px;
+      padding:30px 24px 22px;
+      box-shadow:0 0 35px rgba(201,156,255,.35);
+      text-align:center;
+    }
+
+    .close{
+      position:absolute;
+      right:12px;
+      top:10px;
+      border:none;
+      background:none;
+      color:#fff;
+      font-size:2rem;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    .modal-image{
+      width:min(84vw, 360px);
+      height:260px;
+      object-fit:cover;
+      border-radius:18px;
+      margin:0 auto 18px auto;
+      display:block;
+      border:6px solid rgba(255,255,255,.2);
+      box-shadow:0 16px 38px rgba(0,0,0,.25);
+    }
+
+    .modal-text{
+      margin:0;
+      color:#f8f7ff;
+      font-size:clamp(1.1rem, 2.2vw, 2rem);
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    @media (max-width:700px){
+      .cars-wrap{
+        gap:10px;
+        padding:12px;
+        flex-wrap:wrap;
       }
-      100% {
-        transform: translateY(-75vh) scale(0);
-        opacity: 0;
+
+      .car-card{
+        width:120px;
+        height:150px;
       }
     }
   </style>
 </head>
 <body>
-  <div id="start-screen">
-    <button id="start-button">Toca aquí 💙</button>
+
+  <div class="bg-pattern"></div>
+
+  <div class="start-screen" id="startScreen">
+    <button class="start-btn" id="startBtn">Apretá aquí 💙</button>
   </div>
 
-  <div id="page">
-    <h1>Para Sergio 💙</h1>
+  <div class="app" id="app">
+    <h1 class="titulo">Feliz 30 de septiembre<span class="heart">❤</span></h1>
 
-    <div class="bouquet">
-      <div class="flower flower-1" onclick="openModal(0)">
-        <div class="petals">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="center"></div>
-        </div>
-        <div class="stem"></div>
+    <div class="cars-wrap">
+      <div class="car-card" data-index="0">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="auto 1">
+        <div class="label">Ferrari</div>
       </div>
 
-      <div class="flower flower-2" onclick="openModal(1)">
-        <div class="petals">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="center"></div>
-        </div>
-        <div class="stem"></div>
+      <div class="car-card" data-index="1">
+        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="auto 2">
+        <div class="label">Porsche</div>
       </div>
 
-      <div class="flower flower-3" onclick="openModal(2)">
-        <div class="petals">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="center"></div>
-        </div>
-        <div class="stem"></div>
+      <div class="car-card" data-index="2">
+        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80" alt="auto 3">
+        <div class="label">Lambo</div>
       </div>
 
-      <div class="flower flower-4" onclick="openModal(3)">
-        <div class="petals">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="center"></div>
-        </div>
-        <div class="stem"></div>
+      <div class="car-card" data-index="3">
+        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=900&q=80" alt="auto 4">
+        <div class="label">Dodge</div>
       </div>
 
-      <div class="flower flower-5" onclick="openModal(4)">
-        <div class="petals">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="center"></div>
-        </div>
-        <div class="stem"></div>
+      <div class="car-card" data-index="4">
+        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80" alt="auto 5">
+        <div class="label">Ford</div>
       </div>
-
-      <div class="grass grass-1"></div>
-      <div class="grass grass-2"></div>
-      <div class="grass grass-3"></div>
     </div>
-
-    <div class="particles"></div>
   </div>
 
-  <div id="modal" class="modal">
+  <div class="modal" id="modal">
     <div class="modal-box">
-      <button class="close-btn" onclick="closeModal()">×</button>
-      <div class="modal-flower">🌻</div>
-      <p id="message">Hola</p>
+      <button class="close" id="closeModal" aria-label="Cerrar">×</button>
+      <img class="modal-image" id="modalImage" src="" alt="Auto">
+      <p class="modal-text" id="modalText"></p>
     </div>
   </div>
+
+  <audio id="audio" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const messages = [
-      "Eres una persona muy especial para mí. 💙",
-      "Gracias por estar en mi vida. 🚘",
-      "Hice este detalle especialmente para ti. ✨",
-      "Contigo todos mis días son más bonitos. 💫",
-      "Te quiero mucho, Sergio. 💙"
+      "No necesito nada más cuando estoy contigo 💙",
+      "Gracias por ser mi apoyo, mi alegría y mi mejor compañía ✨",
+      "Eres la persona que hace que cada día se sienta especial 🚘",
+      "Juntos hacemos la mejor historia y el mejor viaje 💫",
+      "Te quiero mucho, más de lo que las palabras pueden decir ❤️"
     ];
 
-    const startScreen = document.getElementById("start-screen");
-    const startButton = document.getElementById("start-button");
-    const page = document.getElementById("page");
-    const modal = document.getElementById("modal");
-    const message = document.getElementById("message");
+    const images = [
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+    ];
 
-    startButton.addEventListener("click", function () {
-      startScreen.style.display = "none";
-      page.style.display = "block";
+    const startScreen = document.getElementById("startScreen");
+    const startBtn = document.getElementById("startBtn");
+    const app = document.getElementById("app");
+    const modal = document.getElementById("modal");
+    const modalText = document.getElementById("modalText");
+    const modalImage = document.getElementById("modalImage");
+    const closeModal = document.getElementById("closeModal");
+    const audio = document.getElementById("audio");
+
+    startBtn.addEventListener("click", () => {
+      startScreen.classList.add("hidden");
+      app.classList.add("show");
+
+      audio.volume = 0.3;
+      audio.play().catch(() => {
+        // si el navegador bloquea autoplay, igual sigue funcionando
+      });
     });
 
-    function openModal(index) {
-      message.textContent = messages[index];
-      modal.classList.add("active");
-    }
+    document.querySelectorAll(".car-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const index = Number(card.dataset.index);
+        modalText.textContent = messages[index];
+        modalImage.src = images[index];
+        modal.classList.add("show");
+      });
+    });
 
-    function closeModal() {
-      modal.classList.remove("active");
-    }
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
 
-    setInterval(() => {
-      const particle = document.createElement("span");
-      particle.className = "particle";
-      particle.style.left = Math.random() * 100 + "vw";
-      particle.style.animationDuration = (2 + Math.random() * 2) + "s";
-      document.querySelector(".particles").appendChild(particle);
-
-      setTimeout(() => particle.remove(), 3500);
-    }, 400);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("show");
+      }
+    });
   </script>
 </body>
 </html>
