@@ -3,91 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Sergio 🏎️❤️</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Feliz 30 de Septiembre🚗💙</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #0a1931 0%, #030814 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        /* --- PANTALLA DE CARGA (LOADER) --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #030814;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader-title {
+            font-size: 1.5rem;
+            color: #ff2a2a;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 42, 42, 0.6);
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .track-container {
+            width: 80%;
+            max-width: 350px;
+            position: relative;
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .track-line {
+            width: 100%;
+            height: 6px;
+            background: #1e293b;
+            border-radius: 3px;
+            position: absolute;
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+
+        .track-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff0055, #ffcc00);
+            box-shadow: 0 0 12px #ff5500;
+            transition: width 0.05s linear;
+        }
+
+        .car-icon {
+            position: absolute;
+            top: -12px;
+            left: 0%;
+            width: 45px;
+            height: 25px;
+            transform: translateX(-50%);
+            transition: left 0.05s linear;
+            filter: drop-shadow(0 0 6px #00e5ff);
+        }
+
+        .percentage {
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #00e5ff;
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            width: 100%;
+            padding: 20px 10px;
+            transition: opacity 1s ease;
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #38bdf8;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 30px rgba(0, 119, 255, 0.4);
+            margin-top: 15px;
+            font-weight: 800;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #38bdf8; }
+            to { text-shadow: 0 0 25px #00e5ff, 0 0 35px #0077ff; }
+        }
+
+        .instruction {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        /* --- CONTENEDOR DEL RAMO (ANIMACIÓN DE ENTRADA DESDE ABAJO) --- */
+        .bouquet-container {
+            position: relative;
+            width: 340px;
+            height: 520px;
+            margin-top: auto;
+            transform: translateY(100vh); /* Inicia fuera de pantalla abajo */
+            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .bouquet-container.visible {
+            transform: translateY(0); /* Sube hasta su posición */
+        }
+
+        /* PAPEL DEL RAMO (ENVOLTURA AZUL) */
+        .wrapper-paper-back {
+            position: absolute;
+            bottom: 0;
+            width: 320px;
+            height: 380px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+            clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            z-index: 1;
+        }
+
+        .wrapper-paper-front {
+            position: absolute;
+            bottom: 0;
+            width: 280px;
+            height: 250px;
+            background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+            clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
+            z-index: 3;
+            box-shadow: inset 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        .ribbon {
+            position: absolute;
+            bottom: 30px;
+            width: 140px;
+            height: 35px;
+            background: linear-gradient(90deg, #38bdf8, #0284c7, #38bdf8);
+            border-radius: 20px;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        /* FLORES AZULES */
+        .flower {
+            position: absolute;
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #38bdf8 0%, #1d4ed8 100%);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+        .f1 { bottom: 200px; left: 40px; transform: scale(0.8) rotate(-25deg); }
+        .f2 { bottom: 210px; right: 40px; transform: scale(0.8) rotate(25deg); }
+        .f3 { bottom: 180px; left: 110px; transform: scale(1) rotate(0deg); }
+
+        /* TARJETAS DE HOT WHEELS */
+        .cards-group {
+            position: absolute;
+            bottom: 120px;
+            width: 100%;
+            height: 380px;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hw-card {
+            position: absolute;
+            width: 105px;
+            height: 155px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hw-card:hover {
+            transform: scale(1.15) translateY(-15px) !important;
+            z-index: 10 !important;
+            filter: brightness(1.2);
+            border-color: #38bdf8;
+        }
+
+        /* Posiciones en abanico para las 6 tarjetas */
+        .c1 { transform: rotate(-28deg) translate(-100px, 20px); z-index: 1; }
+        .c2 { transform: rotate(-16deg) translate(-55px, -15px); z-index: 2; }
+        .c3 { transform: rotate(-5deg) translate(-15px, -40px); z-index: 3; }
+        .c4 { transform: rotate(5deg) translate(15px, -40px); z-index: 3; }
+        .c5 { transform: rotate(16deg) translate(55px, -15px); z-index: 2; }
+        .c6 { transform: rotate(28deg) translate(100px, 20px); z-index: 1; }
+
+        /* MODAL DE DEDICATORIA */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(3, 8, 20, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: #0f172a;
+            border: 2px solid #38bdf8;
+            border-radius: 16px;
+            padding: 25px;
+            width: 85%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-text {
+            font-size: 1.1rem;
+            color: #f1f5f9;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .close-btn {
+            background: linear-gradient(90deg, #ff0055, #ff5500);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 0, 85, 0.4);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- PANTALLA DE CARGA -->
+    <!-- PANTALLA DE CARGA CON CARRITO Y PORCENTAJE -->
     <div id="loader">
-        <h2>Cargando tu ramo de Hot Wheels...</h2>
-        <div class="progress-container">
-            <div id="car-loader">🏎️</div>
-            <div id="progress-bar"></div>
+        <div class="loader-title">PREPARANDO REGALO...</div>
+        <div class="track-container">
+            <div class="track-line">
+                <div class="track-progress" id="progress"></div>
+            </div>
+            <!-- Carrito SVG de carreras -->
+            <svg class="car-icon" id="car" viewBox="0 0 24 24" fill="#00e5ff">
+                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"/>
+                <circle cx="7.5" cy="14.5" r="1.5"/>
+                <circle cx="16.5" cy="14.5" r="1.5"/>
+            </svg>
         </div>
-        <p id="progress-text">0%</p>
+        <div class="percentage" id="percent-text">0%</div>
     </div>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <div id="main-content" class="hidden">
-        <header class="header">
-            <h1 class="title-glow">Feliz 30 de septiembre 🩵</h1>
-            <p class="sub-text">Toca cada carrito para descubrir </p>
-        </header>
-
-        <!-- CARRITOS INTERACTIVOS INDIVIDUALES -->
-        <div class="cars-grid">
-            <div class="car-item" onclick="openCard(0)">
-                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=400&q=80" alt="Carro 1">
-                <div class="car-badge">🏎️ Carrito #1</div>
-            </div>
-
-            <div class="car-item" onclick="openCard(1)">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=80" alt="Carro 2">
-                <div class="car-badge">🏎️ Carrito #2</div>
-            </div>
-
-            <div class="car-item" onclick="openCard(2)">
-                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=400&q=80" alt="Carro 3">
-                <div class="car-badge">🏎️ Carrito #3</div>
-            </div>
-
-            <div class="car-item" onclick="openCard(3)">
-                <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=400&q=80" alt="Carro 4">
-                <div class="car-badge">🏎️ Carrito #4</div>
-            </div>
-
-            <div class="car-item" onclick="openCard(4)">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80" alt="Carro 5">
-                <div class="car-badge">🏎️ Carrito #5</div>
-            </div>
+    <div class="main-content" id="mainContent">
+        <div>
+            <h1 class="header-title">Feliz 30 de septiembre 💙</h1>
+            <p class="instruction">Toca un carrito para descubrir 🚘✨</p>
         </div>
 
-        <!-- TARJETA HOT WHEELS EN MODAL AL TOCAR -->
-        <div id="card-modal" class="modal hidden">
-            <div class="hw-card">
-                <button class="close-btn" onclick="closeCard()">×</button>
-                
-                <div class="checkered-border top"></div>
-                <div class="hw-header">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Hot_Wheels_logo.svg" alt="Hot Wheels Logo" class="hw-logo">
-                </div>
+        <!-- RAMO ANIMADO -->
+        <div class="bouquet-container" id="bouquet">
+            <!-- Capa trasera envoltura -->
+            <div class="wrapper-paper-back"></div>
 
-                <div class="hw-body">
-                    <h2 id="card-text" class="quote-text"></h2>
-                </div>
+            <!-- Flores de adorno -->
+            <div class="flower f1"></div>
+            <div class="flower f2"></div>
+            <div class="flower f3"></div>
 
-                <div class="hw-image-container">
-                    <img id="card-img" src="" alt="Carro deportivo">
-                </div>
-
-                <div class="checkered-border bottom"></div>
-
-                <div class="card-controls">
-                    <button onclick="prevCard()">◄ Anterior</button>
-                    <span id="card-counter">1 / 5</span>
-                    <button onclick="nextCard()">Siguiente ►</button>
-                </div>
+            <!-- Tarjetas de Hot Wheels -->
+            <div class="cards-group">
+                <!-- Ferrari SF90 -->
+                <div class="hw-card c1" onclick="openPhrase(0)" style="background-image: url('https://m.media-amazon.com/images/I/71R24-pL9YL._AC_SL1200_.jpg');"></div>
+                <!-- McLaren P1 -->
+                <div class="hw-card c2" onclick="openPhrase(1)" style="background-image: url('https://m.media-amazon.com/images/I/71s86mK-J-L._AC_SL1001_.jpg');"></div>
+                <!-- Lamborghini Huracán -->
+                <div class="hw-card c3" onclick="openPhrase(2)" style="background-image: url('https://m.media-amazon.com/images/I/71WyluR-9XL._AC_SL1200_.jpg');"></div>
+                <!-- Dodge Charger R/T -->
+                <div class="hw-card c4" onclick="openPhrase(3)" style="background-image: url('https://m.media-amazon.com/images/I/71e-TqZ5V5L._AC_SL1200_.jpg');"></div>
+                <!-- Mercedes AMG F1 -->
+                <div class="hw-card c5" onclick="openPhrase(4)" style="background-image: url('https://m.media-amazon.com/images/I/71zZk8mB5tL._AC_SL1200_.jpg');"></div>
+                <!-- Ford F-150 -->
+                <div class="hw-card c6" onclick="openPhrase(5)" style="background-image: url('https://m.media-amazon.com/images/I/71I3uA32KkL._AC_SL1200_.jpg');"></div>
             </div>
-        </div>
 
-        <!-- DEDICATORIA FINAL -->
-        <footer class="footer-note">
-            <p> Especialmente para vos te quiero mucho sapo 🏎️❤️</p>
-        </footer>
+            <!-- Capa delantera envoltura y Lazo -->
+            <div class="wrapper-paper-front"></div>
+            <div class="ribbon">PARA SERGIO 💙</div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- MODAL / CUADRO FLOTANTE CON FRASES -->
+    <div class="modal" id="modal">
+        <div class="modal-card">
+            <p class="modal-text" id="modalText"></p>
+            <button class="close-btn" onclick="closePhrase()">Cerrar 🏁</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. AQUÍ PUEDES PERSONALIZAR TUS FRASES PARA SERGIO ---
+        const phrases = [
+            "Te quiro mucho sergio de mi corazón. 🏎️💙",
+            "Feliz 30 de septiembre. ✨",
+            "Sos una persona especial para mi. 🏁❤️",
+            "Hice esto especialmente para vos. 🚗💨",
+            "Gracias por ser mi alguien importante en mi vida. ¡Te quiero mucho sapo💙",
+            "Gracias por soportarme te aprecio. 🎁🔥"
+        ];
+
+        // --- 2. ANIMACIÓN DEL LOADER Y CARGA ---
+        let count = 0;
+        const progress = document.getElementById('progress');
+        const car = document.getElementById('car');
+        const percentText = document.getElementById('percent-text');
+        const loader = document.getElementById('loader');
+        const mainContent = document.getElementById('mainContent');
+        const bouquet = document.getElementById('bouquet');
+
+        const interval = setInterval(() => {
+            count += 2;
+            if (count > 100) count = 100;
+            
+            progress.style.width = count + '%';
+            car.style.left = count + '%';
+            percentText.innerText = count + '%';
+
+            if (count === 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    // Ocultar Loader
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    mainContent.style.opacity = '1';
+                    
+                    // Iniciar animación del ramo subiendo desde abajo
+                    setTimeout(() => {
+                        bouquet.classList.add('visible');
+                    }, 200);
+                }, 500);
+            }
+        }, 40);
+
+        // --- 3. FUNCIONES PARA EL MODAL DE FRASES ---
+        function openPhrase(index) {
+            document.getElementById('modalText').innerText = phrases[index];
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closePhrase() {
+            document.getElementById('modal').classList.remove('active');
+        }
+    </script>
 </body>
 </html>
