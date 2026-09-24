@@ -1,557 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz 30 de Septiembre 💙 Para Sergio</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
-            min-height: 100vh;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 10px;
-        }
-
-        /* --- PANTALLA DE CARGA (LOADER) --- */
-        #loader {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: #020c1b;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-
-        .loader-title {
-            font-size: clamp(1.1rem, 4vw, 1.4rem);
-            color: #ff3366;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 12px rgba(255, 51, 102, 0.6);
-            text-align: center;
-        }
-
-        .track-container {
-            width: 75%;
-            max-width: 280px;
-            position: relative;
-            height: 25px;
-            display: flex;
-            align-items: center;
-        }
-
-        .track-line {
-            width: 100%;
-            height: 6px;
-            background: #1e293b;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #334155;
-        }
-
-        .track-progress {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #ff0055, #ffcc00, #00e5ff);
-            box-shadow: 0 0 12px #00e5ff;
-            transition: width 0.05s linear;
-        }
-
-        .car-icon {
-            position: absolute;
-            top: -10px;
-            left: 0%;
-            width: 35px;
-            height: 20px;
-            transform: translateX(-50%);
-            transition: left 0.05s linear;
-            filter: drop-shadow(0 0 6px #00e5ff);
-        }
-
-        .percentage {
-            margin-top: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #00e5ff;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
-        }
-
-        /* --- CONTENIDO PRINCIPAL --- */
-        .main-content {
-            opacity: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            height: 100vh;
-            max-height: 100vh;
-            width: 100%;
-            max-width: 420px;
-            padding: 15px 10px;
-            transition: opacity 0.8s ease;
-        }
-
-        .header-section {
-            text-align: center;
-            margin-top: 5px;
-            z-index: 10;
-        }
-
-        .header-title {
-            font-size: clamp(1.4rem, 5vw, 1.9rem);
-            color: #38bdf8;
-            font-weight: 800;
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #38bdf8; }
-            to { text-shadow: 0 0 20px #00e5ff, 0 0 30px #0077ff; }
-        }
-
-        .instruction {
-            font-size: clamp(0.75rem, 3vw, 0.85rem);
-            color: #cbd5e1;
-            margin-top: 4px;
-        }
-
-        /* --- CONTENEDOR DEL RAMO (ESCALADO PROPORCIONAL COMPACTO) --- */
-        .bouquet-wrapper {
-            position: relative;
-            width: 270px;
-            height: 380px;
-            margin-bottom: 10px;
-            transform: translateY(100vh);
-            transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .bouquet-wrapper.visible {
-            transform: translateY(0);
-        }
-
-        /* FLORES AZULES */
-        .flowers-layer {
-            position: absolute;
-            bottom: 150px;
-            width: 100%;
-            height: 80px;
-            z-index: 2;
-            display: flex;
-            justify-content: space-around;
-            padding: 0 15px;
-            pointer-events: none;
-        }
-
-        .blue-rose {
-            width: 38px;
-            height: 38px;
-            background: radial-gradient(circle at 30% 30%, #38bdf8, #1d4ed8, #0f172a);
-            border-radius: 50% 50% 50% 10%;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
-            position: relative;
-            transform: rotate(-45deg);
-        }
-
-        .blue-rose::after {
-            content: '';
-            position: absolute;
-            top: 20%; left: 20%;
-            width: 60%; height: 60%;
-            background: radial-gradient(circle, #7dd3fc, #0284c7);
-            border-radius: 50%;
-        }
-
-        .rose-1 { transform: rotate(-30deg) scale(0.85); }
-        .rose-2 { transform: rotate(-45deg) scale(1) translateY(-8px); }
-        .rose-3 { transform: rotate(-60deg) scale(0.85); }
-
-        /* ABANICO DE TARJETAS HOT WHEELS */
-        .cards-fan {
-            position: absolute;
-            bottom: 100px;
-            width: 100%;
-            height: 270px;
-            z-index: 3;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hw-card {
-            position: absolute;
-            width: 82px;
-            height: 125px;
-            background: #002244;
-            border-radius: 7px;
-            border: 1.5px solid #38bdf8;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8), 0 0 8px rgba(56, 189, 248, 0.3);
-            cursor: pointer;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27), box-shadow 0.3s ease;
-        }
-
-        .hw-card:hover, .hw-card:active {
-            transform: scale(1.3) translateY(-20px) !important;
-            z-index: 50 !important;
-            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.7), 0 0 15px #00e5ff;
-            border-color: #00e5ff;
-        }
-
-        .card-header {
-            background: linear-gradient(90deg, #d97706, #dc2626, #d97706);
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 2px;
-            border-bottom: 1.5px solid #ffcc00;
-        }
-
-        .card-header span {
-            font-size: 0.5rem;
-            font-weight: 900;
-            color: #fff;
-            font-style: italic;
-            letter-spacing: 0.3px;
-            text-shadow: 1px 1px 2px #000;
-        }
-
-        .card-img-container {
-            width: 100%;
-            height: 80px;
-            background: #0f172a;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-footer {
-            background: #0369a1;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 1px 2px;
-            border-top: 1px solid #38bdf8;
-        }
-
-        .card-footer span {
-            font-size: 0.48rem;
-            font-weight: 800;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* POSICIONES EN ABANICO REDUCIDAS */
-        .c1 { transform: rotate(-26deg) translate(-82px, 18px); z-index: 10; }
-        .c2 { transform: rotate(-15deg) translate(-48px, -8px); z-index: 11; }
-        .c3 { transform: rotate(-5deg) translate(-15px, -26px); z-index: 12; }
-        .c4 { transform: rotate(5deg) translate(15px, -26px); z-index: 12; }
-        .c5 { transform: rotate(15deg) translate(48px, -8px); z-index: 11; }
-        .c6 { transform: rotate(26deg) translate(82px, 18px); z-index: 10; }
-
-        /* PAPEL DEL RAMO (ENVOLTURA AZUL COMPACTA) */
-        .wrapper-back {
-            position: absolute;
-            bottom: 0;
-            width: 240px;
-            height: 250px;
-            background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%);
-            clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-            border-radius: 10px;
-            z-index: 1;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-        }
-
-        .wrapper-front {
-            position: absolute;
-            bottom: 0;
-            width: 210px;
-            height: 160px;
-            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
-            clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 25% 100%);
-            z-index: 4;
-            box-shadow: inset 0 4px 10px rgba(255,255,255,0.3);
-        }
-
-        .ribbon-badge {
-            position: absolute;
-            bottom: 18px;
-            width: 135px;
-            height: 32px;
-            background: linear-gradient(90deg, #0284c7, #38bdf8, #0284c7);
-            border: 1.5px solid #e0f2fe;
-            border-radius: 20px;
-            z-index: 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            letter-spacing: 0.8px;
-        }
-
-        /* MODAL FLOTANTE */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(2, 12, 27, 0.88);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-box {
-            background: linear-gradient(145deg, #0f172a, #1e293b);
-            border: 2px solid #38bdf8;
-            border-radius: 18px;
-            padding: 24px 20px;
-            width: 85%;
-            max-width: 310px;
-            text-align: center;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
-            transform: scale(0.7);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: scale(1);
-        }
-
-        .modal-icon {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        .modal-text {
-            font-size: 1rem;
-            color: #f8fafc;
-            line-height: 1.5;
-            margin-bottom: 18px;
-            font-weight: 500;
-        }
-
-        .close-btn {
-            background: linear-gradient(90deg, #ff0055, #ff5500);
-            color: #fff;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(255, 0, 85, 0.4);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Sergio 💙</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <!-- PANTALLA DE CARGA -->
-    <div id="loader">
-        <div class="loader-title">PREPARANDO DEDICATORIA...</div>
-        <div class="track-container">
-            <div class="track-line">
-                <div class="track-progress" id="progress"></div>
-            </div>
-            <svg class="car-icon" id="car" viewBox="0 0 24 24" fill="#00e5ff">
-                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"/>
-                <circle cx="7.5" cy="14.5" r="1.5"/>
-                <circle cx="16.5" cy="14.5" r="1.5"/>
-            </svg>
+<body class="not-loaded">
+
+  <div id="start-screen">
+    <button id="start-button">Toca aquí 💙</button>
+  </div>
+
+  <main id="page" hidden>
+    <div class="background"></div>
+
+    <h1>Para Sergio 💙</h1>
+    <p class="subtitle">Un detalle especial para ti</p>
+
+    <section class="bouquet">
+
+      <article class="flower flower-1" data-index="0">
+        <div class="petals">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="center"></div>
         </div>
-        <div class="percentage" id="percent-text">0%</div>
+        <div class="stem"></div>
+      </article>
+
+      <article class="flower flower-2" data-index="1">
+        <div class="petals">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="center"></div>
+        </div>
+        <div class="stem"></div>
+      </article>
+
+      <article class="flower flower-3" data-index="2">
+        <div class="petals">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="center"></div>
+        </div>
+        <div class="stem"></div>
+      </article>
+
+      <article class="flower flower-4" data-index="3">
+        <div class="petals">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="center"></div>
+        </div>
+        <div class="stem"></div>
+      </article>
+
+      <article class="flower flower-5" data-index="4">
+        <div class="petals">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="center"></div>
+        </div>
+        <div class="stem"></div>
+      </article>
+
+      <div class="grass grass-1"></div>
+      <div class="grass grass-2"></div>
+      <div class="grass grass-3"></div>
+    </section>
+
+    <div class="particles"></div>
+  </main>
+
+  <div id="modal" class="modal">
+    <div class="modal-box">
+      <button id="close-modal">×</button>
+      <div class="modal-flower">🌻</div>
+      <p id="message"></p>
     </div>
+  </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="main-content" id="mainContent">
-        <div class="header-section">
-            <h1 class="header-title">Feliz 30 de septiembre 💙</h1>
-            <p class="instruction">Toca un carrito para descubrir 🚘✨</p>
-        </div>
-
-        <!-- CONTENEDOR DEL RAMO -->
-        <div class="bouquet-wrapper" id="bouquet">
-            <!-- Envoltura trasera -->
-            <div class="wrapper-back"></div>
-
-            <!-- Flores azules decorativas -->
-            <div class="flowers-layer">
-                <div class="blue-rose rose-1"></div>
-                <div class="blue-rose rose-2"></div>
-                <div class="blue-rose rose-3"></div>
-            </div>
-
-            <!-- Abanico de Tarjetas Hot Wheels con Autos Reales -->
-            <div class="cards-fan">
-                <!-- 1. Ferrari -->
-                <div class="hw-card c1" onclick="openPhrase(0)">
-                    <div class="card-header"><span>HOT WHEELS</span></div>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=300&auto=format&fit=crop&q=80" alt="Ferrari SF90" class="card-img">
-                    </div>
-                    <div class="card-footer"><span>FERRARI SF90</span></div>
-                </div>
-
-                <!-- 2. McLaren -->
-                <div class="hw-card c2" onclick="openPhrase(1)">
-                    <div class="card-header"><span>HOT WHEELS</span></div>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=300&auto=format&fit=crop&q=80" alt="McLaren P1" class="card-img">
-                    </div>
-                    <div class="card-footer"><span>MCLAREN P1</span></div>
-                </div>
-
-                <!-- 3. Lamborghini -->
-                <div class="hw-card c3" onclick="openPhrase(2)">
-                    <div class="card-header"><span>HOT WHEELS</span></div>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=300&auto=format&fit=crop&q=80" alt="Lamborghini" class="card-img">
-                    </div>
-                    <div class="card-footer"><span>LAMBORGHINI</span></div>
-                </div>
-
-                <!-- 4. Dodge Charger -->
-                <div class="hw-card c4" onclick="openPhrase(3)">
-                    <div class="card-header"><span>HOT WHEELS</span></div>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=300&auto=format&fit=crop&q=80" alt="Dodge Charger" class="card-img">
-                    </div>
-                    <div class="card-footer"><span>DODGE CHARGER</span></div>
-                </div>
-
-                <!-- 5. Mercedes F1 -->
-                <div class="hw-card c5" onclick="openPhrase(4)">
-                    <div class="card-header"><span>HOT WHEELS</span></div>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=300&auto=format&fit=crop&q=80" alt="Mercedes F1" class="card-img">
-                    </div>
-                    <div class="card-footer"><span>MERCEDES F1</span></div>
-                </div>
-
-                <!-- 6. Ford F-150 -->
-                <div class="hw-card c6" onclick="openPhrase(5)">
-                    <div class="card-header"><span>HOT WHEELS</span></div>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=300&auto=format&fit=crop&q=80" alt="Ford F-150" class="card-img">
-                    </div>
-                    <div class="card-footer"><span>FORD F-150</span></div>
-                </div>
-            </div>
-
-            <!-- Envoltura delantera y lazo -->
-            <div class="wrapper-front"></div>
-            <div class="ribbon-badge">PARA SERGIO 💙</div>
-        </div>
-    </div>
-
-    <!-- MODAL DE DEDICATORIA -->
-    <div class="modal-overlay" id="modal">
-        <div class="modal-box">
-            <div class="modal-icon">🏎️💨</div>
-            <p class="modal-text" id="modalText"></p>
-            <button class="close-btn" onclick="closePhrase()">Cerrar 🏁</button>
-        </div>
-    </div>
-
-    <script>
-        // Mensajes personalizados para Sergio
-        const phrases = [
-            "Eres el motor que le da velocidad a mis días más bonitos. 🏎️💙",
-            "Aceleras mi corazón como nadie más puede hacerlo. Feliz 30 de septiembre. ✨",
-            "Juntos hacemos la mejor escudería. Te quiero muchísimo, Sergio. 🏁❤️",
-            "Gracias por recorrer cada kilómetro de la vida a mi lado. 🚗💨",
-            "Eres mi lugar feliz y mi persona favorita hoy y siempre. 💙",
-            "Un detalle especial para el copiloto perfecto de mi vida. 🎁🔥"
-        ];
-
-        // Animación de Carga
-        let count = 0;
-        const progress = document.getElementById('progress');
-        const car = document.getElementById('car');
-        const percentText = document.getElementById('percent-text');
-        const loader = document.getElementById('loader');
-        const mainContent = document.getElementById('mainContent');
-        const bouquet = document.getElementById('bouquet');
-
-        const interval = setInterval(() => {
-            count += 2;
-            if (count > 100) count = 100;
-            
-            progress.style.width = count + '%';
-            car.style.left = count + '%';
-            percentText.innerText = count + '%';
-
-            if (count === 100) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
-                    mainContent.style.opacity = '1';
-                    
-                    setTimeout(() => {
-                        bouquet.classList.add('visible');
-                    }, 200);
-                }, 400);
-            }
-        }, 35);
-
-        // Funciones del Modal
-        function openPhrase(index) {
-            document.getElementById('modalText').innerText = phrases[index];
-            document.getElementById('modal').classList.add('active');
-        }
-
-        function closePhrase() {
-            document.getElementById('modal').classList.remove('active');
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
