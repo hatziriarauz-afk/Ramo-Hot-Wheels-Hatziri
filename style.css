@@ -1,1 +1,83 @@
 *{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden}body{font-family:Arial,Helvetica,sans-serif;background:#03152e;color:#fff}.hidden{display:none!important}.background{position:fixed;inset:0;z-index:-2;background:linear-gradient(rgba(2,22,55,.48),rgba(2,22,55,.68)),url('https://i.pinimg.com/736x/a0/73/56/a07356dbd5911c2fc768256c9349a411.jpg') center/cover no-repeat;filter:blur(.5px);transform:scale(1.04)}#start-screen{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#061d40}.start-button{border:0;border-radius:14px;padding:18px 30px;background:#fff8da;color:#061d40;font-size:1.35rem;font-weight:700;cursor:pointer;box-shadow:0 0 25px #fff5}.start-button:active{transform:scale(.96)}#app{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center}h1{margin-top:38px;color:#cf9eff;font-size:clamp(2.2rem,6vw,5.7rem);line-height:1.05;text-align:center;text-shadow:0 0 14px #c28cff,0 0 30px #9564d9;z-index:5}h1 span,.modal-content h2 span{color:#d59cff}.bouquet{position:absolute;bottom:-8px;left:50%;width:min(900px,94vw);height:76vh;transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;gap:clamp(8px,2.6vw,34px)}.flower{position:relative;width:clamp(75px,12vw,125px);height:clamp(235px,35vh,360px);cursor:pointer;z-index:3;animation:sway 4s ease-in-out infinite;transition:filter .2s,transform .2s}.flower:hover{filter:brightness(1.12);transform:translateY(-10px)}.flower-1{margin-bottom:4vh;transform:rotate(-15deg)}.flower-2{margin-bottom:9vh;transform:rotate(-7deg);animation-delay:.3s}.flower-3{margin-bottom:12vh;animation-delay:.6s}.flower-4{margin-bottom:8vh;transform:rotate(7deg);animation-delay:.9s}.flower-5{margin-bottom:3vh;transform:rotate(15deg);animation-delay:1.2s}.flower-head{position:absolute;top:0;left:50%;width:clamp(72px,10vw,125px);height:clamp(72px,10vw,125px);transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#fff8a5 0 8%,#ffd62d 34%,#f5a900 100%);box-shadow:0 0 18px #ffd83d}.flower-head i{position:absolute;left:50%;bottom:10%;width:34%;height:54%;border:2px solid #f5b300;border-radius:55%;background:linear-gradient(#fff7a2,#ffd229,#f4a900);transform-origin:50% 88%}.flower-head i:nth-child(1){transform:translateX(-50%) rotate(-45deg)}.flower-head i:nth-child(2){transform:translateX(-50%) rotate(-15deg)}.flower-head i:nth-child(3){transform:translateX(-50%) rotate(15deg)}.flower-head i:nth-child(4){transform:translateX(-50%) rotate(45deg)}.flower-head b{position:absolute;left:50%;top:50%;width:31%;height:31%;transform:translate(-50%,-50%);border-radius:50%;background:repeating-conic-gradient(#2e1608 0 18deg,#713d1b 18deg 36deg);z-index:2}.stem{position:absolute;top:clamp(72px,10vw,120px);left:50%;width:9px;height:calc(100% - 82px);transform:translateX(-50%);border-radius:9px;background:linear-gradient(90deg,#245314,#6b9e25,#245314);box-shadow:inset 0 0 3px #111}.leaf{position:absolute;top:58%;width:clamp(22px,4vw,42px);height:clamp(65px,10vw,100px);border-radius:100% 0;background:linear-gradient(135deg,#78bd2c,#245b18);box-shadow:inset 0 0 5px #183b12}.leaf-left{left:5%;transform:rotate(-35deg)}.leaf-right{right:5%;transform:scaleX(-1) rotate(-35deg)}.grass{position:absolute;bottom:-5px;width:16px;height:210px;border-radius:10px;background:linear-gradient(#5d9826,#173e13);z-index:1}.grass-left{left:15%;transform:rotate(-30deg)}.grass-right{right:15%;transform:rotate(30deg)}#particles{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden}.particle{position:absolute;bottom:-10px;width:7px;height:7px;border-radius:50%;background:#fff;opacity:.8;animation:float-up 3s linear forwards}.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.78)}.modal.show{display:flex}.close{position:absolute;top:22px;right:35px;border:0;background:none;color:#fff;font-size:3rem;line-height:1;cursor:pointer;z-index:2}.modal-content{width:min(92vw,700px);text-align:center}.modal-content h2{margin-bottom:16px;color:#cf9eff;font-size:clamp(2rem,5vw,4.4rem);text-shadow:0 0 13px #b678f5}.modal-content img{display:block;width:min(80vw,360px);height:min(62vh,520px);margin:auto;object-fit:cover;border-radius:18px;box-shadow:0 0 30px #fff8;background:#fff}.modal-content p{margin:20px auto 0;max-width:720px;font-size:clamp(1.1rem,2.4vw,1.8rem);line-height:1.45}.modal-content img[src=""]{display:none}@keyframes sway{0%,100%{translate:0 0}50%{translate:0 -8px}}@keyframes float-up{to{translate:var(--x) -80vh;scale:.3;opacity:0}}@media(max-width:600px){h1{margin-top:24px}.bouquet{gap:0;height:66vh}.flower{width:20vw;height:270px}.flower-head{width:20vw;height:20vw}.grass{height:150px}.close{right:18px;top:12px}.modal-content img{height:55vh}}
+.flower-head {
+  overflow: visible;
+  background: #3158b7;
+  border: none;
+  box-shadow:
+    0 0 12px #3979ff,
+    0 0 25px rgba(65, 125, 255, 0.7);
+}
+
+/* Imagen circular del carrito */
+.flower-car {
+  position: absolute;
+  z-index: 3;
+  top: 12%;
+  left: 12%;
+  width: 76%;
+  height: 76%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #8bbcff;
+  box-shadow:
+    0 0 8px white,
+    inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Pétalos azules alrededor de la imagen */
+.flower-head i {
+  z-index: 1;
+  width: 43%;
+  height: 58%;
+  border: 0;
+  background: linear-gradient(
+    135deg,
+    #466bd0,
+    #253d91 70%,
+    #17285f
+  );
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.15),
+    0 0 6px rgba(50, 110, 255, 0.5);
+}
+
+/* Posición de los pétalos azules */
+.flower-head i:nth-child(2) {
+  transform: translateX(-50%) rotate(-48deg) translateY(3px);
+}
+
+.flower-head i:nth-child(3) {
+  transform: translateX(-50%) rotate(-16deg) translateY(3px);
+}
+
+.flower-head i:nth-child(4) {
+  transform: translateX(-50%) rotate(16deg) translateY(3px);
+}
+
+.flower-head i:nth-child(5) {
+  transform: translateX(-50%) rotate(48deg) translateY(3px);
+}
+
+/* Oculta el centro marrón de la flor */
+.flower-head b {
+  display: none;
+}
+
+/* Las imágenes se ajustan mejor en celular */
+@media (max-width: 600px) {
+  .flower-head {
+    width: 25vw;
+    height: 25vw;
+    min-width: 82px;
+    min-height: 82px;
+  }
+
+  .flower-car {
+    border-width: 3px;
+  }
+
+  .flower-head i {
+    width: 45%;
+    height: 60%;
+  }
+}
