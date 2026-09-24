@@ -1,377 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz 30 de septiembre</title>
-  <style>
-    :root{
-      --bg1:#020d1d;
-      --bg2:#0a2248;
-      --text:#d9c3ff;
-      --blue:#1e3a8a;
-      --blue2:#0f172a;
-      --cardBlue:#2f7ef5;
-      --gold:#f9d84c;
-      --card:#f5f5f5;
-      --shadow: rgba(0,0,0,.35);
-    }
-
-    *{ box-sizing:border-box; }
-
-    html,body{
-      margin:0;
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg1);
-      color:white;
-    }
-
-    body{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:
-        radial-gradient(circle at center, rgba(30,58,138,.4), transparent 35%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-    }
-
-    .bg-pattern{
-      position:absolute;
-      inset:0;
-      opacity:.75;
-      background-image:
-        linear-gradient(rgba(255,255,255,.02), rgba(255,255,255,.02)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='800' viewBox='0 0 1400 800'%3E%3Cg fill='none' stroke='%235da7ff' stroke-opacity='0.18' font-family='Arial' font-size='28' font-weight='700'%3E%3Ctext x='30' y='120' transform='rotate(-15 30 120)'%3EHot Wheels%3C/text%3E%3Ctext x='260' y='310' transform='rotate(-15 260 310)'%3EHot Wheels%3C/text%3E%3Ctext x='550' y='200' transform='rotate(-15 550 200)'%3EHot Wheels%3C/text%3E%3Ctext x='760' y='420' transform='rotate(-15 760 420)'%3EHot Wheels%3C/text%3E%3Ctext x='980' y='260' transform='rotate(-15 980 260)'%3EHot Wheels%3C/text%3E%3Ctext x='1100' y='560' transform='rotate(-15 1100 560)'%3EHot Wheels%3C/text%3E%3Ctext x='160' y='620' transform='rotate(-15 160 620)'%3EHot Wheels%3C/text%3E%3Ctext x='600' y='650' transform='rotate(-15 600 650)'%3EHot Wheels%3C/text%3E%3Ctext x='900' y='710' transform='rotate(-15 900 710)'%3EHot Wheels%3C/text%3E%3C/g%3E%3C/svg%3E");
-      background-size:cover;
-      background-position:center;
-      pointer-events:none;
-    }
-
-    .start-screen{
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(2,15,29,.92);
-      z-index:999;
-      transition:opacity .4s ease, visibility .4s ease;
-    }
-
-    .start-screen.hidden{
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-    }
-
-    .start-btn{
-      border:none;
-      border-radius:18px;
-      background:linear-gradient(180deg,#fff5d0,#f5e4b4);
-      color:#0d1b2a;
-      font-size:1.5rem;
-      font-weight:700;
-      padding:18px 34px;
-      cursor:pointer;
-      box-shadow:0 12px 28px rgba(255,255,255,.2);
-    }
-
-    .app{
-      position:relative;
-      z-index:2;
-      width:100%;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      opacity:0;
-      transform:translateY(18px);
-      transition:all .8s ease;
-    }
-
-    .app.show{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .titulo{
-      margin:0;
-      color:var(--text);
-      font-weight:900;
-      font-size:clamp(2.2rem, 5vw, 6rem);
-      letter-spacing:1px;
-      text-shadow: 0 0 18px rgba(201,156,255,.9);
-      text-align:center;
-      line-height:1.1;
-    }
-
-    .titulo .heart{
-      display:inline-block;
-      transform:translateY(4px);
-      font-size:0.8em;
-      color:#ff7bdc;
-      text-shadow:0 0 18px rgba(255,123,220,.9);
-    }
-
-    .cars-wrap{
-      position:relative;
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:clamp(12px, 2vw, 24px);
-      margin-top:40px;
-      padding:20px;
-      transform:translateY(12px);
-    }
-
-    .car-card{
-      position:relative;
-      width:clamp(100px, 14vw, 180px);
-      height:clamp(120px, 24vw, 220px);
-      background:linear-gradient(180deg, #fff, #dfeafc);
-      border-radius:18px 18px 12px 12px;
-      box-shadow:0 16px 32px var(--shadow);
-      border:4px solid #dfeafc;
-      overflow:hidden;
-      cursor:pointer;
-      transition:transform .25s ease, box-shadow .25s ease;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-    }
-
-    .car-card:hover{
-      transform:translateY(-16px) scale(1.04);
-      box-shadow:0 20px 35px rgba(0,0,0,.45);
-    }
-
-    .car-card img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      filter:saturate(1.05) contrast(1.05);
-    }
-
-    .car-card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:20px;
-      background:linear-gradient(90deg,#1d4ed8,#38bdf8,#1d4ed8);
-      border-bottom:3px solid rgba(255,255,255,.7);
-    }
-
-    .car-card::after{
-      content:"HOT WHEELS";
-      position:absolute;
-      top:18px;
-      left:50%;
-      transform:translateX(-50%);
-      font-size:clamp(7px, 1vw, 13px);
-      font-weight:900;
-      letter-spacing:1px;
-      color:#fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,.5);
-    }
-
-    .car-card .label{
-      position:absolute;
-      bottom:0;
-      left:0;
-      width:100%;
-      padding:6px 4px;
-      background:rgba(16,32,60,.8);
-      color:#fff;
-      font-size:clamp(8px, 1vw, 12px);
-      font-weight:700;
-      text-align:center;
-      letter-spacing:1px;
-      text-transform:uppercase;
-    }
-
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      background:rgba(2,12,24,.78);
-      z-index:1000;
-    }
-
-    .modal.show{
-      display:flex;
-    }
-
-    .modal-box{
-      position:relative;
-      width:min(92vw, 540px);
-      background:#0a1732;
-      border:3px solid rgba(201,156,255,.9);
-      border-radius:22px;
-      padding:30px 24px 22px;
-      box-shadow:0 0 35px rgba(201,156,255,.35);
-      text-align:center;
-    }
-
-    .close{
-      position:absolute;
-      right:12px;
-      top:10px;
-      border:none;
-      background:none;
-      color:#fff;
-      font-size:2rem;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .modal-image{
-      width:min(84vw, 360px);
-      height:260px;
-      object-fit:cover;
-      border-radius:18px;
-      margin:0 auto 18px auto;
-      display:block;
-      border:6px solid rgba(255,255,255,.2);
-      box-shadow:0 16px 38px rgba(0,0,0,.25);
-    }
-
-    .modal-text{
-      margin:0;
-      color:#f8f7ff;
-      font-size:clamp(1.1rem, 2.2vw, 2rem);
-      line-height:1.5;
-      font-weight:700;
-    }
-
-    @media (max-width:700px){
-      .cars-wrap{
-        gap:10px;
-        padding:12px;
-        flex-wrap:wrap;
-      }
-
-      .car-card{
-        width:120px;
-        height:150px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz 30 de septiembre 💙</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="bg-pattern"></div>
-
-  <div class="start-screen" id="startScreen">
-    <button class="start-btn" id="startBtn">Apretá aquí 💙</button>
+  <div id="start-screen">
+    <button id="start-button">Apretá aquí 💙</button>
   </div>
 
-  <div class="app" id="app">
-    <h1 class="titulo">Feliz 30 de septiembre<span class="heart">❤</span></h1>
+  <main id="app" class="hidden">
+    <div class="background"></div>
+    <h1>Feliz 30 de septiembre<span>❤</span>!</h1>
 
-    <div class="cars-wrap">
-      <div class="car-card" data-index="0">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="auto 1">
-        <div class="label">Ferrari</div>
-      </div>
+    <section class="bouquet" aria-label="Ramo de Hot Wheels">
+      <article class="flower flower-1" data-index="0"><div class="flower-head"><i></i><i></i><i></i><i></i><b></b></div><div class="stem"></div><div class="leaf leaf-left"></div><div class="leaf leaf-right"></div></article>
+      <article class="flower flower-2" data-index="1"><div class="flower-head"><i></i><i></i><i></i><i></i><b></b></div><div class="stem"></div><div class="leaf leaf-left"></div><div class="leaf leaf-right"></div></article>
+      <article class="flower flower-3" data-index="2"><div class="flower-head"><i></i><i></i><i></i><i></i><b></b></div><div class="stem"></div><div class="leaf leaf-left"></div><div class="leaf leaf-right"></div></article>
+      <article class="flower flower-4" data-index="3"><div class="flower-head"><i></i><i></i><i></i><i></i><b></b></div><div class="stem"></div><div class="leaf leaf-left"></div><div class="leaf leaf-right"></div></article>
+      <article class="flower flower-5" data-index="4"><div class="flower-head"><i></i><i></i><i></i><i></i><b></b></div><div class="stem"></div><div class="leaf leaf-left"></div><div class="leaf leaf-right"></div></article>
+      <div class="grass grass-left"></div><div class="grass grass-right"></div>
+    </section>
+    <div id="particles"></div>
+  </main>
 
-      <div class="car-card" data-index="1">
-        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="auto 2">
-        <div class="label">Porsche</div>
-      </div>
-
-      <div class="car-card" data-index="2">
-        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80" alt="auto 3">
-        <div class="label">Lambo</div>
-      </div>
-
-      <div class="car-card" data-index="3">
-        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=900&q=80" alt="auto 4">
-        <div class="label">Dodge</div>
-      </div>
-
-      <div class="car-card" data-index="4">
-        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80" alt="auto 5">
-        <div class="label">Ford</div>
-      </div>
+  <section id="modal" class="modal" aria-hidden="true">
+    <button id="close-modal" class="close" aria-label="Cerrar">×</button>
+    <div class="modal-content">
+      <h2>Feliz 30 de septiembre<span>❤</span>!</h2>
+      <img id="modal-image" src="" alt="Tarjeta Hot Wheels">
+      <p id="modal-message"></p>
     </div>
-  </div>
+  </section>
 
-  <div class="modal" id="modal">
-    <div class="modal-box">
-      <button class="close" id="closeModal" aria-label="Cerrar">×</button>
-      <img class="modal-image" id="modalImage" src="" alt="Auto">
-      <p class="modal-text" id="modalText"></p>
-    </div>
-  </div>
-
-  <audio id="audio" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  <audio id="music" loop preload="auto">
+    <source src="https://github.com/Baque2005/public-files/raw/refs/heads/main/2025/new%20west%20-%20those%20eyes%20%20sub.%20espa%C3%B1ol.mp3" type="audio/mpeg">
   </audio>
-
-  <script>
-    const messages = [
-      "No necesito nada más cuando estoy contigo 💙",
-      "Gracias por ser mi apoyo, mi alegría y mi mejor compañía ✨",
-      "Eres la persona que hace que cada día se sienta especial 🚘",
-      "Juntos hacemos la mejor historia y el mejor viaje 💫",
-      "Te quiero mucho, más de lo que las palabras pueden decir ❤️"
-    ];
-
-    const images = [
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
-    ];
-
-    const startScreen = document.getElementById("startScreen");
-    const startBtn = document.getElementById("startBtn");
-    const app = document.getElementById("app");
-    const modal = document.getElementById("modal");
-    const modalText = document.getElementById("modalText");
-    const modalImage = document.getElementById("modalImage");
-    const closeModal = document.getElementById("closeModal");
-    const audio = document.getElementById("audio");
-
-    startBtn.addEventListener("click", () => {
-      startScreen.classList.add("hidden");
-      app.classList.add("show");
-
-      audio.volume = 0.3;
-      audio.play().catch(() => {
-        // si el navegador bloquea autoplay, igual sigue funcionando
-      });
-    });
-
-    document.querySelectorAll(".car-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        const index = Number(card.dataset.index);
-        modalText.textContent = messages[index];
-        modalImage.src = images[index];
-        modal.classList.add("show");
-      });
-    });
-
-    closeModal.addEventListener("click", () => {
-      modal.classList.remove("show");
-    });
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.remove("show");
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
