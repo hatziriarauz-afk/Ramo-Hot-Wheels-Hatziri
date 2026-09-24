@@ -1,9 +1,9 @@
 const messages=[
-  'No necesito nada más cuando estoy contigo.',
-  'Gracias por ser mi apoyo, mi alegría y mi mejor compañía.',
-  'Eres la persona que hace que cada día se sienta especial.',
-  'Juntos hacemos la mejor historia y el mejor viaje.',
-  'Te quiero mucho, más de lo que las palabras pueden decir.'
+  'Te quiero mucho sergio de mi corazón.',
+  'Sos una persona especial.',
+  'Gracias por soportarme.',
+  'Gracias por ser mi alguien importante en mi vida.Te quiero mucho sapo.',
+  'Gracias por formar parte de mi vida.'
 ];
 
 const carImages=[
