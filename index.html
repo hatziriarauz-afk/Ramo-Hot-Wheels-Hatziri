@@ -5,50 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Sergio 🏎️❤️</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1 id="main-title" class="title">Tengo algo que darte...</h1>
-        <button id="openBtn" class="btn">Abrir regalo ❤️</button>
 
-        <div id="bouquet" class="hidden">
-            <h2 class="glow-text">💐 TU RAMO DE HOT WHEELS 🏎️</h2>
-            <p class="subtitle">Toca los carritos...</p>
-            
-            <div class="cars-container">
-                <!-- Carrito 1 -->
-                <div class="car-card" onclick="flipCard(this)">
-                    <div class="car-inner">
-                        <div class="car-front">🏎️</div>
-                        <div class="car-back">Eres<br>increíble</div>
-                    </div>
-                </div>
-                <!-- Carrito 2 -->
-                <div class="car-card" onclick="flipCard(this)">
-                    <div class="car-inner">
-                        <div class="car-front">🚘</div>
-                        <div class="car-back">Me haces<br>muy feliz</div>
-                    </div>
-                </div>
-                <!-- Carrito 3 -->
-                <div class="car-card" onclick="flipCard(this)">
-                    <div class="car-inner">
-                        <div class="car-front">🚗</div>
-                        <div class="car-back">Mi<br>favorito</div>
-                    </div>
-                </div>
-                <!-- Carrito 4 -->
-                <div class="car-card" onclick="flipCard(this)">
-                    <div class="car-inner">
-                        <div class="car-front">🏁</div>
-                        <div class="car-back">Te quiero<br>muchísimo</div>
-                    </div>
-                </div>
+    <!-- PANTALLA DE CARGA -->
+    <div id="loader">
+        <h2>Cargando tu ramo de Hot Wheels...</h2>
+        <div class="progress-container">
+            <div id="car-loader">🏎️</div>
+            <div id="progress-bar"></div>
+        </div>
+        <p id="progress-text">0%</p>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="main-content" class="hidden">
+        <header class="header">
+            <h1 class="title-glow">Feliz 30 de septiembre 🩵</h1>
+            <p class="sub-text">Toca cada carrito para descubrir </p>
+        </header>
+
+        <!-- CARRITOS INTERACTIVOS INDIVIDUALES -->
+        <div class="cars-grid">
+            <div class="car-item" onclick="openCard(0)">
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=400&q=80" alt="Carro 1">
+                <div class="car-badge">🏎️ Carrito #1</div>
             </div>
 
-            <p class="final-message">Vos me regalaste flores amarillas... así que ahora te tocaba recibir un ramo también, pero uno que fuera más vos. 🏎️❤️</p>
+            <div class="car-item" onclick="openCard(1)">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=80" alt="Carro 2">
+                <div class="car-badge">🏎️ Carrito #2</div>
+            </div>
+
+            <div class="car-item" onclick="openCard(2)">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=400&q=80" alt="Carro 3">
+                <div class="car-badge">🏎️ Carrito #3</div>
+            </div>
+
+            <div class="car-item" onclick="openCard(3)">
+                <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=400&q=80" alt="Carro 4">
+                <div class="car-badge">🏎️ Carrito #4</div>
+            </div>
+
+            <div class="car-item" onclick="openCard(4)">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80" alt="Carro 5">
+                <div class="car-badge">🏎️ Carrito #5</div>
+            </div>
         </div>
+
+        <!-- TARJETA HOT WHEELS EN MODAL AL TOCAR -->
+        <div id="card-modal" class="modal hidden">
+            <div class="hw-card">
+                <button class="close-btn" onclick="closeCard()">×</button>
+                
+                <div class="checkered-border top"></div>
+                <div class="hw-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Hot_Wheels_logo.svg" alt="Hot Wheels Logo" class="hw-logo">
+                </div>
+
+                <div class="hw-body">
+                    <h2 id="card-text" class="quote-text"></h2>
+                </div>
+
+                <div class="hw-image-container">
+                    <img id="card-img" src="" alt="Carro deportivo">
+                </div>
+
+                <div class="checkered-border bottom"></div>
+
+                <div class="card-controls">
+                    <button onclick="prevCard()">◄ Anterior</button>
+                    <span id="card-counter">1 / 5</span>
+                    <button onclick="nextCard()">Siguiente ►</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEDICATORIA FINAL -->
+        <footer class="footer-note">
+            <p> Especialmente para vos te quiero mucho sapo 🏎️❤️</p>
+        </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
