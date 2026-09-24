@@ -13,7 +13,13 @@ const carImages=[
   'https://i.pinimg.com/736x/2f/a2/40/2fa24003df141ce44c1faebed7657b51.jpg',
   'https://i.pinimg.com/736x/52/0e/a0/520ea07326484c50977b05b4442712f5.jpg'
 ];
+document.querySelectorAll('.flower').forEach((flower, index) => {
+  const image = flower.querySelector('.flower-car');
 
+  if (image) {
+    image.src = carImages[index];
+  }
+});
 const startScreen=document.getElementById('start-screen');
 const startButton=document.getElementById('start-button');
 const app=document.getElementById('app');
