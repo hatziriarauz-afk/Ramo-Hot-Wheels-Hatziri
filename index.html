@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz 30 de Septiembre 💙 </title>
+    <title>Feliz 30 de Septiembre 💙 Para Sergio</title>
     <style>
         * {
             box-sizing: border-box;
@@ -20,7 +20,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
+            overflow: hidden;
+            padding: 10px;
         }
 
         /* --- PANTALLA DE CARGA (LOADER) --- */
@@ -38,26 +39,27 @@
         }
 
         .loader-title {
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
             color: #ff3366;
             font-weight: 800;
             letter-spacing: 2px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-shadow: 0 0 12px rgba(255, 51, 102, 0.6);
+            text-align: center;
         }
 
         .track-container {
-            width: 80%;
-            max-width: 320px;
+            width: 75%;
+            max-width: 280px;
             position: relative;
-            height: 30px;
+            height: 25px;
             display: flex;
             align-items: center;
         }
 
         .track-line {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: #1e293b;
             border-radius: 10px;
             overflow: hidden;
@@ -74,18 +76,18 @@
 
         .car-icon {
             position: absolute;
-            top: -12px;
+            top: -10px;
             left: 0%;
-            width: 40px;
-            height: 24px;
+            width: 35px;
+            height: 20px;
             transform: translateX(-50%);
             transition: left 0.05s linear;
-            filter: drop-shadow(0 0 8px #00e5ff);
+            filter: drop-shadow(0 0 6px #00e5ff);
         }
 
         .percentage {
-            margin-top: 20px;
-            font-size: 1.3rem;
+            margin-top: 15px;
+            font-size: 1.2rem;
             font-weight: bold;
             color: #00e5ff;
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
@@ -98,43 +100,45 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            min-height: 100vh;
+            height: 100vh;
+            max-height: 100vh;
             width: 100%;
-            padding: 20px 10px 40px;
-            transition: opacity 1s ease;
+            max-width: 420px;
+            padding: 15px 10px;
+            transition: opacity 0.8s ease;
         }
 
         .header-section {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 5px;
             z-index: 10;
         }
 
         .header-title {
-            font-size: 2.2rem;
+            font-size: clamp(1.4rem, 5vw, 1.9rem);
             color: #38bdf8;
             font-weight: 800;
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 30px rgba(0, 119, 255, 0.5);
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
             animation: glow 2s infinite alternate;
         }
 
         @keyframes glow {
             from { text-shadow: 0 0 10px #38bdf8; }
-            to { text-shadow: 0 0 25px #00e5ff, 0 0 35px #0077ff; }
+            to { text-shadow: 0 0 20px #00e5ff, 0 0 30px #0077ff; }
         }
 
         .instruction {
-            font-size: 0.95rem;
+            font-size: clamp(0.75rem, 3vw, 0.85rem);
             color: #cbd5e1;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
-        /* --- CONTENEDOR DEL RAMO --- */
+        /* --- CONTENEDOR DEL RAMO (ESCALADO PROPORCIONAL COMPACTO) --- */
         .bouquet-wrapper {
             position: relative;
-            width: 350px;
-            height: 520px;
-            margin-top: 20px;
+            width: 270px;
+            height: 380px;
+            margin-bottom: 10px;
             transform: translateY(100vh);
             transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
             display: flex;
@@ -146,25 +150,25 @@
             transform: translateY(0);
         }
 
-        /* FLORES AZULES DECORATIVAS */
+        /* FLORES AZULES */
         .flowers-layer {
             position: absolute;
-            bottom: 210px;
+            bottom: 150px;
             width: 100%;
-            height: 100px;
+            height: 80px;
             z-index: 2;
             display: flex;
             justify-content: space-around;
-            padding: 0 20px;
+            padding: 0 15px;
             pointer-events: none;
         }
 
         .blue-rose {
-            width: 50px;
-            height: 50px;
+            width: 38px;
+            height: 38px;
             background: radial-gradient(circle at 30% 30%, #38bdf8, #1d4ed8, #0f172a);
             border-radius: 50% 50% 50% 10%;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
             position: relative;
             transform: rotate(-45deg);
         }
@@ -178,16 +182,16 @@
             border-radius: 50%;
         }
 
-        .rose-1 { transform: rotate(-30deg) scale(0.9); }
-        .rose-2 { transform: rotate(-45deg) scale(1.1) translateY(-10px); }
-        .rose-3 { transform: rotate(-60deg) scale(0.9); }
+        .rose-1 { transform: rotate(-30deg) scale(0.85); }
+        .rose-2 { transform: rotate(-45deg) scale(1) translateY(-8px); }
+        .rose-3 { transform: rotate(-60deg) scale(0.85); }
 
         /* ABANICO DE TARJETAS HOT WHEELS */
         .cards-fan {
             position: absolute;
-            bottom: 140px;
+            bottom: 100px;
             width: 100%;
-            height: 360px;
+            height: 270px;
             z-index: 3;
             display: flex;
             justify-content: center;
@@ -195,12 +199,12 @@
 
         .hw-card {
             position: absolute;
-            width: 115px;
-            height: 175px;
+            width: 82px;
+            height: 125px;
             background: #002244;
-            border-radius: 10px;
-            border: 2px solid #38bdf8;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 10px rgba(56, 189, 248, 0.3);
+            border-radius: 7px;
+            border: 1.5px solid #38bdf8;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8), 0 0 8px rgba(56, 189, 248, 0.3);
             cursor: pointer;
             overflow: hidden;
             display: flex;
@@ -209,37 +213,35 @@
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27), box-shadow 0.3s ease;
         }
 
-        .hw-card:hover {
-            transform: scale(1.25) translateY(-25px) !important;
+        .hw-card:hover, .hw-card:active {
+            transform: scale(1.3) translateY(-20px) !important;
             z-index: 50 !important;
-            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.6), 0 0 20px #00e5ff;
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.7), 0 0 15px #00e5ff;
             border-color: #00e5ff;
         }
 
-        /* ENCABEZADO ESTILO HOT WHEELS */
         .card-header {
             background: linear-gradient(90deg, #d97706, #dc2626, #d97706);
-            height: 28px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 4px;
-            border-bottom: 2px solid #ffcc00;
+            padding: 0 2px;
+            border-bottom: 1.5px solid #ffcc00;
         }
 
         .card-header span {
-            font-size: 0.65rem;
+            font-size: 0.5rem;
             font-weight: 900;
             color: #fff;
             font-style: italic;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             text-shadow: 1px 1px 2px #000;
         }
 
-        /* IMAGEN DE LA TARJETA */
         .card-img-container {
             width: 100%;
-            height: 110px;
+            height: 80px;
             background: #0f172a;
             position: relative;
             overflow: hidden;
@@ -252,90 +254,87 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
         }
 
-        .hw-card:hover .card-img {
-            transform: scale(1.1);
-        }
-
-        /* PIE DE LA TARJETA (NOMBRE DEL AUTO) */
         .card-footer {
             background: #0369a1;
-            height: 32px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2px 4px;
+            padding: 1px 2px;
             border-top: 1px solid #38bdf8;
         }
 
         .card-footer span {
-            font-size: 0.65rem;
+            font-size: 0.48rem;
             font-weight: 800;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* POSICIONES EN ABANICO DE LAS 6 TARJETAS */
-        .c1 { transform: rotate(-30deg) translate(-110px, 25px); z-index: 10; }
-        .c2 { transform: rotate(-18deg) translate(-65px, -10px); z-index: 11; }
-        .c3 { transform: rotate(-6deg) translate(-20px, -35px); z-index: 12; }
-        .c4 { transform: rotate(6deg) translate(20px, -35px); z-index: 12; }
-        .c5 { transform: rotate(18deg) translate(65px, -10px); z-index: 11; }
-        .c6 { transform: rotate(30deg) translate(110px, 25px); z-index: 10; }
+        /* POSICIONES EN ABANICO REDUCIDAS */
+        .c1 { transform: rotate(-26deg) translate(-82px, 18px); z-index: 10; }
+        .c2 { transform: rotate(-15deg) translate(-48px, -8px); z-index: 11; }
+        .c3 { transform: rotate(-5deg) translate(-15px, -26px); z-index: 12; }
+        .c4 { transform: rotate(5deg) translate(15px, -26px); z-index: 12; }
+        .c5 { transform: rotate(15deg) translate(48px, -8px); z-index: 11; }
+        .c6 { transform: rotate(26deg) translate(82px, 18px); z-index: 10; }
 
-        /* PAPEL DEL RAMO (ENVOLTURA AZUL) */
+        /* PAPEL DEL RAMO (ENVOLTURA AZUL COMPACTA) */
         .wrapper-back {
             position: absolute;
             bottom: 0;
-            width: 320px;
-            height: 340px;
+            width: 240px;
+            height: 250px;
             background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%);
             clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-            border-radius: 12px;
+            border-radius: 10px;
             z-index: 1;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
         }
 
         .wrapper-front {
             position: absolute;
             bottom: 0;
-            width: 290px;
-            height: 220px;
+            width: 210px;
+            height: 160px;
             background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
             clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 25% 100%);
             z-index: 4;
-            box-shadow: inset 0 6px 15px rgba(255,255,255,0.3);
+            box-shadow: inset 0 4px 10px rgba(255,255,255,0.3);
         }
 
         .ribbon-badge {
             position: absolute;
-            bottom: 25px;
-            width: 170px;
-            height: 42px;
+            bottom: 18px;
+            width: 135px;
+            height: 32px;
             background: linear-gradient(90deg, #0284c7, #38bdf8, #0284c7);
-            border: 2px solid #e0f2fe;
-            border-radius: 25px;
+            border: 1.5px solid #e0f2fe;
+            border-radius: 20px;
             z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             font-weight: 800;
             color: #ffffff;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.6);
-            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.8px;
         }
 
-        /* MODAL FLOTANTE (DEDICATORIA) */
+        /* MODAL FLOTANTE */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(2, 12, 27, 0.85);
-            backdrop-filter: blur(6px);
+            background: rgba(2, 12, 27, 0.88);
+            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -353,12 +352,12 @@
         .modal-box {
             background: linear-gradient(145deg, #0f172a, #1e293b);
             border: 2px solid #38bdf8;
-            border-radius: 20px;
-            padding: 30px 25px;
-            width: 88%;
-            max-width: 340px;
+            border-radius: 18px;
+            padding: 24px 20px;
+            width: 85%;
+            max-width: 310px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
             transform: scale(0.7);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
         }
@@ -368,15 +367,15 @@
         }
 
         .modal-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
         }
 
         .modal-text {
-            font-size: 1.15rem;
+            font-size: 1rem;
             color: #f8fafc;
-            line-height: 1.6;
-            margin-bottom: 22px;
+            line-height: 1.5;
+            margin-bottom: 18px;
             font-weight: 500;
         }
 
@@ -384,17 +383,12 @@
             background: linear-gradient(90deg, #ff0055, #ff5500);
             color: #fff;
             border: none;
-            padding: 12px 28px;
-            border-radius: 25px;
-            font-size: 0.95rem;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 800;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
-            transition: transform 0.2s ease;
-        }
-
-        .close-btn:active {
-            transform: scale(0.95);
+            box-shadow: 0 4px 12px rgba(255, 0, 85, 0.4);
         }
     </style>
 </head>
@@ -435,13 +429,13 @@
                 <div class="blue-rose rose-3"></div>
             </div>
 
-            <!-- Abanico de Tarjetas Hot Wheels -->
+            <!-- Abanico de Tarjetas Hot Wheels con Autos Reales -->
             <div class="cards-fan">
                 <!-- 1. Ferrari -->
                 <div class="hw-card c1" onclick="openPhrase(0)">
                     <div class="card-header"><span>HOT WHEELS</span></div>
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&auto=format&fit=crop&q=80" alt="Ferrari" class="card-img">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=300&auto=format&fit=crop&q=80" alt="Ferrari SF90" class="card-img">
                     </div>
                     <div class="card-footer"><span>FERRARI SF90</span></div>
                 </div>
@@ -450,7 +444,7 @@
                 <div class="hw-card c2" onclick="openPhrase(1)">
                     <div class="card-header"><span>HOT WHEELS</span></div>
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=400&auto=format&fit=crop&q=80" alt="McLaren" class="card-img">
+                        <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=300&auto=format&fit=crop&q=80" alt="McLaren P1" class="card-img">
                     </div>
                     <div class="card-footer"><span>MCLAREN P1</span></div>
                 </div>
@@ -459,7 +453,7 @@
                 <div class="hw-card c3" onclick="openPhrase(2)">
                     <div class="card-header"><span>HOT WHEELS</span></div>
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=400&auto=format&fit=crop&q=80" alt="Lamborghini" class="card-img">
+                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=300&auto=format&fit=crop&q=80" alt="Lamborghini" class="card-img">
                     </div>
                     <div class="card-footer"><span>LAMBORGHINI</span></div>
                 </div>
@@ -468,7 +462,7 @@
                 <div class="hw-card c4" onclick="openPhrase(3)">
                     <div class="card-header"><span>HOT WHEELS</span></div>
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=400&auto=format&fit=crop&q=80" alt="Dodge Charger" class="card-img">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=300&auto=format&fit=crop&q=80" alt="Dodge Charger" class="card-img">
                     </div>
                     <div class="card-footer"><span>DODGE CHARGER</span></div>
                 </div>
@@ -477,7 +471,7 @@
                 <div class="hw-card c5" onclick="openPhrase(4)">
                     <div class="card-header"><span>HOT WHEELS</span></div>
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&auto=format&fit=crop&q=80" alt="Mercedes F1" class="card-img">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=300&auto=format&fit=crop&q=80" alt="Mercedes F1" class="card-img">
                     </div>
                     <div class="card-footer"><span>MERCEDES F1</span></div>
                 </div>
@@ -486,7 +480,7 @@
                 <div class="hw-card c6" onclick="openPhrase(5)">
                     <div class="card-header"><span>HOT WHEELS</span></div>
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&auto=format&fit=crop&q=80" alt="Ford F-150" class="card-img">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=300&auto=format&fit=crop&q=80" alt="Ford F-150" class="card-img">
                     </div>
                     <div class="card-footer"><span>FORD F-150</span></div>
                 </div>
@@ -498,7 +492,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE FRASES -->
+    <!-- MODAL DE DEDICATORIA -->
     <div class="modal-overlay" id="modal">
         <div class="modal-box">
             <div class="modal-icon">🏎️💨</div>
@@ -510,12 +504,12 @@
     <script>
         // Mensajes personalizados para Sergio
         const phrases = [
-            "Te quiero mucho sergio de mi corazón. 🏎️💙",
-            "Feliz 30 de septiembre. ✨",
-            "Gracias por soportar a esta persona. 🏁❤️",
-            "Sos una persona especial para mi 🚗💨",
-            "Gracias por ser mi alguien importante en mi vida. ¡Te quiero mucho sapo💙",
-            "Un detalle especial para vos. 🎁🔥"
+            "Eres el motor que le da velocidad a mis días más bonitos. 🏎️💙",
+            "Aceleras mi corazón como nadie más puede hacerlo. Feliz 30 de septiembre. ✨",
+            "Juntos hacemos la mejor escudería. Te quiero muchísimo, Sergio. 🏁❤️",
+            "Gracias por recorrer cada kilómetro de la vida a mi lado. 🚗💨",
+            "Eres mi lugar feliz y mi persona favorita hoy y siempre. 💙",
+            "Un detalle especial para el copiloto perfecto de mi vida. 🎁🔥"
         ];
 
         // Animación de Carga
