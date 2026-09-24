@@ -1,110 +1,264 @@
-body {
-    background-color: #0b0b0b;
-    color: white;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #090b10;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* PANTALLA DE CARGA */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #07090e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#loader h2 {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #4da6ff;
+    text-shadow: 0 0 10px rgba(77, 166, 255, 0.5);
+    text-align: center;
+    padding: 0 15px;
+}
+
+.progress-container {
+    width: 260px;
+    height: 12px;
+    background: #1a2232;
+    border-radius: 10px;
+    position: relative;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff2a2a, #0088ff);
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+#car-loader {
+    position: absolute;
+    top: -18px;
+    left: 0%;
+    font-size: 1.5rem;
+    transform: translateX(-50%);
+    transition: left 0.1s linear;
+}
+
+#progress-text {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* CONTENIDO PRINCIPAL */
+.hidden {
+    display: none !important;
+}
+
+#main-content {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px 15px;
+    text-align: center;
+}
+
+.title-glow {
+    color: #38b6ff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(56, 182, 255, 0.7);
+    margin-bottom: 5px;
+}
+
+.sub-text {
+    font-size: 0.85rem;
+    color: #a0aec0;
+    margin-bottom: 25px;
+}
+
+/* GRID DE CARRITOS */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.car-item {
+    background: #121620;
+    border: 2px solid #e60012;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(230, 0, 18, 0.25);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.car-item:active {
+    transform: scale(0.96);
+    border-color: #38b6ff;
+}
+
+.car-item img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    display: block;
+}
+
+.car-badge {
+    background: #0a0d14;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px;
+    text-align: center;
+    border-top: 1px solid #1e2638;
+}
+
+/* TARJETA MODAL */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 15px;
+}
+
+.hw-card {
+    background: #121620;
+    border: 3px solid #e60012;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 360px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(230, 0, 18, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
 }
 
-.hidden { display: none !important; }
-
-.title { margin-top: 30vh; font-size: 2em; animation: fadeIn 2s ease-in-out; }
-
-.btn {
-    background: linear-gradient(45deg, #ff0000, #ff4500);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 25px;
-    cursor: pointer;
-    margin-top: 20px;
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
-    transition: transform 0.2s;
-}
-
-.btn:active { transform: scale(0.95); }
-
-.glow-text {
-    color: #ff4500;
-    text-shadow: 0 0 10px #ff4500, 0 0 20px #ff0000;
-    margin-top: 20px;
-}
-
-.subtitle { color: #aaaaaa; font-style: italic; margin-bottom: 30px; }
-
-.cars-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.car-card {
-    width: 120px;
-    height: 120px;
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.car-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.car-card.flipped .car-inner { transform: rotateY(180deg); }
-
-.car-front, .car-back {
-    width: 100%;
-    height: 100%;
+.close-btn {
     position: absolute;
-    backface-visibility: hidden;
+    top: 6px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.checkered-border {
+    width: 100%;
+    height: 14px;
+    background-image: repeating-linear-gradient(90deg, #fff 0 10px, #000 10px 20px);
+}
+
+.hw-header {
+    background: #e60012;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.hw-logo {
+    width: 150px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.hw-body {
+    padding: 20px 15px 10px;
+    min-height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
 }
 
-.car-front {
-    background: #1a1a1a;
-    font-size: 60px;
-    border: 2px solid #333;
+.quote-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.4;
 }
 
-.car-back {
-    background: linear-gradient(135deg, #ff4500, #cc0000);
+.hw-image-container {
+    width: 88%;
+    height: 180px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #2a3447;
+}
+
+.hw-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px;
+    background: #0a0d14;
+}
+
+.card-controls button {
+    background: #e60012;
     color: white;
-    transform: rotateY(180deg);
-    font-size: 18px;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
     font-weight: bold;
-    padding: 10px;
-    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 0.8rem;
 }
 
-.final-message {
-    margin-top: 40px;
-    font-size: 1.2em;
-    line-height: 1.5;
-    color: #ffcccc;
-    padding: 20px;
-    background: rgba(255, 0, 0, 0.1);
+#card-counter {
+    font-size: 0.8rem;
+    color: #8a99ad;
+}
+
+.footer-note {
+    margin-top: 20px;
+    background: rgba(230, 0, 18, 0.1);
+    border: 1px solid #e60012;
     border-radius: 15px;
-    border: 1px solid rgba(255, 0, 0, 0.3);
+    padding: 12px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #ffcccc;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
