@@ -1,27 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Sergio 💙</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Sergio</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #051c3d;
+      font-family: Arial, sans-serif;
+    }
+
+    #start-screen {
+      position: fixed;
+      inset: 0;
+      background: #051c3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    #start-button {
+      padding: 18px 30px;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 14px;
+      background: #fff7d6;
+      color: #071f4d;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255,255,255,.25);
+    }
+
+    #page {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: none;
+      background:
+        linear-gradient(rgba(4, 22, 55, 0.6), rgba(4, 22, 55, 0.8)),
+        url("https://i.pinimg.com/736x/a0/73/56/a07356dbd5911c2fc768256c9349a411.jpg")
+        center/cover no-repeat;
+    }
+
+    h1 {
+      position: absolute;
+      top: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #c6a3ff;
+      text-shadow: 0 0 16px rgba(198,163,255,.8);
+      font-size: clamp(2rem, 7vw, 4rem);
+      margin: 0;
+    }
+
+    .bouquet {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 900px;
+      height: 75vh;
+    }
+
+    .flower {
+      position: absolute;
+      bottom: 70px;
+      width: 120px;
+      height: 200px;
+      cursor: pointer;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .flower-1 { left: 8%; transform: rotate(-22deg); }
+    .flower-2 { left: 24%; transform: rotate(-8deg); animation-delay: .5s; }
+    .flower-3 { left: 41%; transform: rotate(0deg); animation-delay: 1s; }
+    .flower-4 { right: 24%; transform: rotate(8deg); animation-delay: 1.5s; }
+    .flower-5 { right: 8%; transform: rotate(22deg); animation-delay: 2s; }
+
+    .petals {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 90px;
+    }
+
+    .petals span {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      width: 42px;
+      height: 68px;
+      background: radial-gradient(circle at 50% 20%, #fff6a8, #ffd21f, #ff9d00);
+      border: 2px solid #ffbe00;
+      border-radius: 55% 55% 45% 45%;
+      transform-origin: bottom center;
+      box-shadow: 0 0 10px rgba(255,210,31,.8);
+    }
+
+    .petals span:nth-child(1) { transform: translateX(-50%) rotate(-45deg); }
+    .petals span:nth-child(2) { transform: translateX(-50%) rotate(-15deg); }
+    .petals span:nth-child(3) { transform: translateX(-50%) rotate(15deg); }
+    .petals span:nth-child(4) { transform: translateX(-50%) rotate(45deg); }
+
+    .center {
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: repeating-conic-gradient(#2f1b14 0deg 18deg, #8b4513 18deg 36deg);
+      box-shadow: inset 0 0 8px rgba(0,0,0,.6);
+      z-index: 2;
+    }
+
+    .stem {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 190px;
+      background: linear-gradient(to right, #2c4f1e, #6aa62d, #2c4f1e);
+      border-radius: 10px;
+    }
+
+    .grass {
+      position: absolute;
+      bottom: 0;
+      width: 18px;
+      height: 180px;
+      background: linear-gradient(to top, #173c12, #5f9623);
+      border-radius: 10px;
+      transform-origin: bottom center;
+    }
+
+    .grass-1 { left: 18%; transform: rotate(-25deg); }
+    .grass-2 { left: 50%; height: 220px; transform: rotate(5deg); }
+    .grass-3 { right: 18%; transform: rotate(25deg); }
+
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -20px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      opacity: .8;
+      animation: particle-up 3.2s linear forwards;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.75);
+      z-index: 200;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-box {
+      position: relative;
+      width: min(90vw, 420px);
+      padding: 30px 22px;
+      background: #061d3d;
+      border: 2px solid #c6a3ff;
+      border-radius: 18px;
+      box-shadow: 0 0 30px rgba(198,163,255,.5);
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 12px;
+      top: 8px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .modal-flower {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    #message {
+      color: white;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes particle-up {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: .8;
+      }
+      100% {
+        transform: translateY(-75vh) scale(0);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-
-<body class="not-loaded">
-
+<body>
   <div id="start-screen">
     <button id="start-button">Toca aquí 💙</button>
   </div>
 
-  <main id="page" hidden>
-    <div class="background"></div>
-
+  <div id="page">
     <h1>Para Sergio 💙</h1>
-    <p class="subtitle">Un detalle especial para ti</p>
 
-    <section class="bouquet">
-
-      <article class="flower flower-1" data-index="0">
+    <div class="bouquet">
+      <div class="flower flower-1" onclick="openModal(0)">
         <div class="petals">
           <span></span>
           <span></span>
@@ -30,9 +246,9 @@
           <div class="center"></div>
         </div>
         <div class="stem"></div>
-      </article>
+      </div>
 
-      <article class="flower flower-2" data-index="1">
+      <div class="flower flower-2" onclick="openModal(1)">
         <div class="petals">
           <span></span>
           <span></span>
@@ -41,9 +257,9 @@
           <div class="center"></div>
         </div>
         <div class="stem"></div>
-      </article>
+      </div>
 
-      <article class="flower flower-3" data-index="2">
+      <div class="flower flower-3" onclick="openModal(2)">
         <div class="petals">
           <span></span>
           <span></span>
@@ -52,9 +268,9 @@
           <div class="center"></div>
         </div>
         <div class="stem"></div>
-      </article>
+      </div>
 
-      <article class="flower flower-4" data-index="3">
+      <div class="flower flower-4" onclick="openModal(3)">
         <div class="petals">
           <span></span>
           <span></span>
@@ -63,9 +279,9 @@
           <div class="center"></div>
         </div>
         <div class="stem"></div>
-      </article>
+      </div>
 
-      <article class="flower flower-5" data-index="4">
+      <div class="flower flower-5" onclick="openModal(4)">
         <div class="petals">
           <span></span>
           <span></span>
@@ -74,24 +290,62 @@
           <div class="center"></div>
         </div>
         <div class="stem"></div>
-      </article>
+      </div>
 
       <div class="grass grass-1"></div>
       <div class="grass grass-2"></div>
       <div class="grass grass-3"></div>
-    </section>
+    </div>
 
     <div class="particles"></div>
-  </main>
+  </div>
 
   <div id="modal" class="modal">
     <div class="modal-box">
-      <button id="close-modal">×</button>
+      <button class="close-btn" onclick="closeModal()">×</button>
       <div class="modal-flower">🌻</div>
-      <p id="message"></p>
+      <p id="message">Hola</p>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const messages = [
+      "Eres una persona muy especial para mí. 💙",
+      "Gracias por estar en mi vida. 🚘",
+      "Hice este detalle especialmente para ti. ✨",
+      "Contigo todos mis días son más bonitos. 💫",
+      "Te quiero mucho, Sergio. 💙"
+    ];
+
+    const startScreen = document.getElementById("start-screen");
+    const startButton = document.getElementById("start-button");
+    const page = document.getElementById("page");
+    const modal = document.getElementById("modal");
+    const message = document.getElementById("message");
+
+    startButton.addEventListener("click", function () {
+      startScreen.style.display = "none";
+      page.style.display = "block";
+    });
+
+    function openModal(index) {
+      message.textContent = messages[index];
+      modal.classList.add("active");
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+    }
+
+    setInterval(() => {
+      const particle = document.createElement("span");
+      particle.className = "particle";
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration = (2 + Math.random() * 2) + "s";
+      document.querySelector(".particles").appendChild(particle);
+
+      setTimeout(() => particle.remove(), 3500);
+    }, 400);
+  </script>
 </body>
 </html>
