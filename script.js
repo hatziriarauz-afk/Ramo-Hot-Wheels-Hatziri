@@ -1,6 +1,6 @@
 /* ============================================================
    PROYECTO: Feliz 30 de septiembre
-   AUTOR: Estudiante Ing. en Sistemas - 5to año
+   AUTOR: Hatziri Joely López Arauz
    DESCRIPCIÓN: Lógica de la postal interactiva
    ============================================================ */
 
