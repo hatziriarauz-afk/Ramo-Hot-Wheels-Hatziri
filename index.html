@@ -1,87 +1,145 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  Proyecto: Feliz 30 de septiembre 💙
+  Autor: Estudiante de Ingeniería en Sistemas - 5to año
+  Descripción: Postal digital interactiva con ramo animado
+  Tecnologías: HTML5 + CSS3 + JavaScript (Vanilla)
+  ============================================================
+-->
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Postal interactiva del 30 de septiembre">
   <title>Feliz 30 de septiembre 💙</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- ============================================================
+       SECCIÓN 1: PANTALLA DE INICIO
+       ============================================================ -->
   <div id="start-screen">
-    <button id="start-button">Apretá aquí 💙</button>
+    <div class="start-ring ring-1"></div>
+    <div class="start-ring ring-2"></div>
+    <div class="start-content">
+      <h2 class="start-title">Un regalo para vos</h2>
+      <p class="start-sub">Hecho con cariño, para una persona especial</p>
+      <button id="start-button" type="button">Apretá aquí 💙</button>
+    </div>
   </div>
 
+  <!-- ============================================================
+       SECCIÓN 2: APLICACIÓN PRINCIPAL
+       ============================================================ -->
   <main id="app" class="hidden">
-    <div class="background"></div>
-    <h1>Feliz 30 de septiembre<span>❤</span>!</h1>
 
+    <!-- Capas del fondo (apiladas de atrás hacia adelante) -->
+    <div class="bg-image"></div>
+    <div class="bg-aurora"></div>
+    <div class="bg-fog"></div>
+    <div class="bg-vignette"></div>
+    <div class="stars"></div>
+    <div class="shooting-stars" id="shootingStars"></div>
+
+    <!-- Encabezado -->
+    <header class="header">
+      <p class="kicker">· 30 · 09 · 2026 ·</p>
+      <h1 class="title">
+        <span class="title-line">Feliz</span>
+        <span class="title-line big">30 de septiembre</span>
+        <span class="title-heart">❤</span>
+      </h1>
+      <p class="subtitle">Un ramo distinto, hecho a mi manera</p>
+    </header>
+
+    <!-- Ramo de flores -->
     <section class="bouquet" aria-label="Ramo de Hot Wheels">
+      <div class="bouquet-light"></div>
+
       <article class="flower flower-1" data-index="0">
-  <div class="flower-head">
-    <img class="flower-car" alt="Hot Wheels">
-    <i></i><i></i><i></i><i></i><b></b>
-  </div>
-  <div class="stem"></div>
-  <div class="leaf leaf-left"></div>
-  <div class="leaf leaf-right"></div>
-</article>
+        <div class="halo"></div>
+        <div class="head">
+          <img class="car" alt="Hot Wheels">
+          <i></i><i></i><i></i><i></i><b></b>
+        </div>
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+      </article>
 
-<article class="flower flower-2" data-index="1">
-  <div class="flower-head">
-    <img class="flower-car" alt="Hot Wheels">
-    <i></i><i></i><i></i><i></i><b></b>
-  </div>
-  <div class="stem"></div>
-  <div class="leaf leaf-left"></div>
-  <div class="leaf leaf-right"></div>
-</article>
+      <article class="flower flower-2" data-index="1">
+        <div class="halo"></div>
+        <div class="head">
+          <img class="car" alt="Hot Wheels">
+          <i></i><i></i><i></i><i></i><b></b>
+        </div>
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+      </article>
 
-<article class="flower flower-3" data-index="2">
-  <div class="flower-head">
-    <img class="flower-car" alt="Hot Wheels">
-    <i></i><i></i><i></i><i></i><b></b>
-  </div>
-  <div class="stem"></div>
-  <div class="leaf leaf-left"></div>
-  <div class="leaf leaf-right"></div>
-</article>
+      <article class="flower flower-3" data-index="2">
+        <div class="halo"></div>
+        <div class="head">
+          <img class="car" alt="Hot Wheels">
+          <i></i><i></i><i></i><i></i><b></b>
+        </div>
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+      </article>
 
-<article class="flower flower-4" data-index="3">
-  <div class="flower-head">
-    <img class="flower-car" alt="Hot Wheels">
-    <i></i><i></i><i></i><i></i><b></b>
-  </div>
-  <div class="stem"></div>
-  <div class="leaf leaf-left"></div>
-  <div class="leaf leaf-right"></div>
-</article>
+      <article class="flower flower-4" data-index="3">
+        <div class="halo"></div>
+        <div class="head">
+          <img class="car" alt="Hot Wheels">
+          <i></i><i></i><i></i><i></i><b></b>
+        </div>
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+      </article>
 
-<article class="flower flower-5" data-index="4">
-  <div class="flower-head">
-    <img class="flower-car" alt="Hot Wheels">
-    <i></i><i></i><i></i><i></i><b></b>
-  </div>
-  <div class="stem"></div>
-  <div class="leaf leaf-left"></div>
-  <div class="leaf leaf-right"></div>
-</article>
-      <div class="grass grass-left"></div><div class="grass grass-right"></div>
+      <article class="flower flower-5" data-index="4">
+        <div class="halo"></div>
+        <div class="head">
+          <img class="car" alt="Hot Wheels">
+          <i></i><i></i><i></i><i></i><b></b>
+        </div>
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+      </article>
+
+      <div class="ground"></div>
     </section>
+
+    <!-- Contenedor de partículas -->
     <div id="particles"></div>
   </main>
 
+  <!-- ============================================================
+       SECCIÓN 3: MODAL DE MENSAJE
+       ============================================================ -->
   <section id="modal" class="modal" aria-hidden="true">
     <button id="close-modal" class="close" aria-label="Cerrar">×</button>
     <div class="modal-content">
-      <h2>Feliz 30 de septiembre<span>❤</span>!</h2>
-      <img id="modal-image" src="" alt="Tarjeta Hot Wheels">
+      <div class="modal-ring"></div>
+      <h2>Feliz 30 de septiembre <span>❤</span></h2>
+      <div class="image-frame">
+        <img id="modal-image" src="" alt="Tarjeta Hot Wheels">
+      </div>
       <p id="modal-message"></p>
     </div>
   </section>
 
+  <!-- Audio de fondo -->
   <audio id="music" loop preload="auto">
     <source src="https://github.com/Baque2005/public-files/raw/refs/heads/main/2025/new%20west%20-%20those%20eyes%20%20sub.%20espa%C3%B1ol.mp3" type="audio/mpeg">
   </audio>
+
   <script src="script.js"></script>
 </body>
 </html>
